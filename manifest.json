@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name"            : "YIFY",
+  "description"     : "Minimal yts app for minimalist",
+  "short_name"      : "YIFY",
+  "version"         : "0.1",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_icon" : "images/logo.png"
+  },
+  "permissions": [
+    "debugger",
+    "storage"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'"
+}
