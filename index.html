@@ -4,17 +4,14 @@
         <title>Angular Todo Chrome Extension</title>
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="lib/angular/css/angular-material.min.css">
+        <link rel="stylesheet" type="text/css" href="lib/animate/animate.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body ng-controller='applicationController' ng-clock> 
         <loading-screen is-loading="myLoadingScope" src="icons/puff.svg"></loading-screen>
         <md-content class="main-container">
             <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="Popular">
-                    <md-content class="md-padding">
-                    </md-content>
-                </md-tab>
-                <md-tab label="Latest">
+                <md-tab label="Popular" md-on-select="getMovies('Popular')">
                     <md-content class="md-padding" class="md-padding" flex layout-wrap layout="row">
                         <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie($index)" flex="30">
                             <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
@@ -27,6 +24,17 @@
                                     <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
                                 </md-button>
                             </md-card-actions> -->
+                        </md-card>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Latest" md-on-select="getMovies('Latest')">
+                    <md-content class="md-padding" class="md-padding" flex layout-wrap layout="row">
+                        <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie($index)" flex="30">
+                            <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
+                            <md-card-content>
+                                <h5 class="title">{{ movie.title_english }}</h5>
+                                <p>{{movie.year}}</p>
+                            </md-card-content>
                         </md-card>
                     </md-content>
                 </md-tab>

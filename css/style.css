@@ -2,8 +2,8 @@ body {
 	font-size: 12px;
 }
 .main-container {
-    width: 600px;
-    height: 550px;
+    width: 500px;
+    height: 600px;
 }
 md-content.md-default-theme, md-content {
     color: rgba(0,0,0,0.87);
@@ -14,4 +14,32 @@ md-content.md-default-theme, md-content {
 }
 md-card {
 	cursor: pointer;
+}
+.title {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+    height: 16px;
+}
+md-card:hover {
+    -ms-transition: all 300ms ease-in;
+    -moz-transition: all 300ms ease-in;
+    transition: all 300ms ease-in;
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+}
+md-tabs-wrapper{ 
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgb(255, 255, 255) !important;
+    z-index: 1000;
+    width: 100%;
+}
+md-tabs.md-dynamic-height md-tabs-content-wrapper {
+    top: 48px !important;
+    margin-bottom: 48px !important;
 }
