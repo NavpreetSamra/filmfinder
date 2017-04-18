@@ -1,4 +1,17 @@
+body {
+	font-size: 12px;
+}
 .main-container {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 550px;
+}
+md-content.md-default-theme, md-content {
+    color: rgba(0,0,0,0.87);
+    background-color: rgb(255,255,255) !important; 
+}
+.md-tab {
+	font-size: 12px !important;
+}
+md-card {
+	cursor: pointer;
 }
