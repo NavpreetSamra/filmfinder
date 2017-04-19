@@ -1,5 +1,6 @@
 body {
 	font-size: 12px;
+    font-family: 'Roboto',sans-serif;
 }
 .main-container {
     width: 500px;
@@ -27,9 +28,9 @@ md-card:hover {
     -ms-transition: all 300ms ease-in;
     -moz-transition: all 300ms ease-in;
     transition: all 300ms ease-in;
-    -moz-transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
+    -moz-transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
 }
 md-tabs-wrapper{ 
     position: fixed;
@@ -42,4 +43,8 @@ md-tabs-wrapper{
 md-tabs.md-dynamic-height md-tabs-content-wrapper {
     top: 48px !important;
     margin-bottom: 48px !important;
+}
+.md-tab.md-active {
+    cursor: default;
+    color: crimson !important;
 }

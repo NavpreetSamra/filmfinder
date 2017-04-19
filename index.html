@@ -4,13 +4,13 @@
         <title>Angular Todo Chrome Extension</title>
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="lib/angular/css/angular-material.min.css">
-        <link rel="stylesheet" type="text/css" href="lib/animate/animate.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body ng-controller='applicationController' ng-clock> 
         <loading-screen is-loading="myLoadingScope" src="icons/puff.svg"></loading-screen>
         <md-content class="main-container">
-            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tabs md-dynamic-height>
                 <md-tab label="Popular" md-on-select="getMovies('Popular')">
                     <md-content class="md-padding" class="md-padding" flex layout-wrap layout="row">
                         <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie($index)" flex="30">
