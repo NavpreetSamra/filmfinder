@@ -5,7 +5,9 @@ angular.module('app').controller('applicationController', function ($scope,$http
     $scope.movie = [];
     $scope.myLoadingScope = false;
 	$scope.currentPage = 1;
+	$scope.showMovie = false;
     $scope.getMovies = function(type) {
+		$scope.showMovie = false;
 		url='';
 		if(type === 'Popular') {
 			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count'
@@ -38,9 +40,14 @@ angular.module('app').controller('applicationController', function ($scope,$http
 			);
 		}
 	}
-
+	
     $scope.viewMovie = function(index) {
+		$scope.showMovie = true;
     	$scope.movie = angular.copy($scope.movies[index]);
+		$scope.heroImage = {
+			background: 'url(' + $scope.movie.background_image + ') no-repeat'
+		};
+		console.log($scope.movie)
     }
 
 	$scope.searchMovie = function() {

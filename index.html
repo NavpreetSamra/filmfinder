@@ -13,7 +13,7 @@
         <md-content class="main-container">
             <md-tabs md-dynamic-height>
                 <md-tab label="Popular" md-on-select="getMovies('Popular')">
-                    <md-content class="md-padding" flex layout-wrap layout="row">
+                    <md-content class="md-padding" flex layout-wrap layout="row" ng-hide="showMovie">
                         <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie($index)" flex="30">
                             <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                             <md-card-content>
@@ -27,6 +27,21 @@
                             </md-card-actions> -->
                         </md-card>
                     </md-content>
+                    <!--<md-content ng-style="heroImage" class="md-padding banner" ng-show="showMovie">-->
+                    <md-content class="md-padding banner" ng-show="showMovie">
+                        <div class="movie-header">
+                            <i class="material-icons back" ng-click="showMovie = false">arrow_back</i>
+                            <h3>Movie details</h3>
+                        </div>
+                        <div class="movie-container">
+                            <img class="cover" ng-src="{{movie.large_cover_image}}"/>
+                            <!--<md-button class="md-fab md-mini md-accent close" aria-label="close" ng-click="showMovie = false">
+                                <md-icon md-svg-src="icons/close.svg"></md-icon>
+                            </md-button>-->
+                            <h4 class="movie-title">{{movie.title}}</h4>
+                        </div>
+                    </md-content>
+                    </div>
                 </md-tab>
                 <md-tab label="Latest" md-on-select="getMovies('Latest')">
                     <md-content class="md-padding" flex layout-wrap layout="row">
