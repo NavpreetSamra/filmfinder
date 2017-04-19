@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="lib/angular/css/angular-material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body ng-controller='applicationController' ng-clock> 
@@ -12,7 +13,7 @@
         <md-content class="main-container">
             <md-tabs md-dynamic-height>
                 <md-tab label="Popular" md-on-select="getMovies('Popular')">
-                    <md-content class="md-padding" class="md-padding" flex layout-wrap layout="row">
+                    <md-content class="md-padding" flex layout-wrap layout="row">
                         <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie($index)" flex="30">
                             <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                             <md-card-content>
@@ -28,7 +29,7 @@
                     </md-content>
                 </md-tab>
                 <md-tab label="Latest" md-on-select="getMovies('Latest')">
-                    <md-content class="md-padding" class="md-padding" flex layout-wrap layout="row">
+                    <md-content class="md-padding" flex layout-wrap layout="row">
                         <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie($index)" flex="30">
                             <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                             <md-card-content>
@@ -36,7 +37,33 @@
                                 <p>{{movie.year}}</p>
                             </md-card-content>
                         </md-card>
+                        <!--<md-button class="md-raised md-accent" ng-click="loadMore('Latest')" ng-hide="myLoadingScope">Primary</md-button>-->
                     </md-content>
+                </md-tab>
+                <md-tab label="Search" class="tab-right">
+                    <md-tab-label>
+                        <i class="material-icons md-dark">search</i>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <md-content class="md-padding" flex layout-wrap layout="row">
+                            <div class="search-container">
+                                <div class="searchBarMain">
+                                    <i class="material-icons searchBarSearchIcon noUserSelect">search</i>
+                                    <input type="text" name="header-search" ng-model="searchInput" id="searchBarInput" placeholder="Search for a movie" ng-enter="searchMovie()">
+                                    <i class="material-icons clearSearchBarField noUserSelect" ng-click="searchInput = ''" ng-show="searchInput.length>0">clear</i>
+                                </div>
+                                <h5 class="movie-length" ng-show="searchMovies.length > 0">{{searchMovies.length}} Movie(s) found.</h5>
+                                <!--<h5 class="movie-length" ng-show="searchMovies.length = 0">No movies found.</h5>                                -->
+                            </div>
+                            <md-card ng-repeat="movie in searchMovies track by $index" ng-click="viewMovie($index)" flex="30">
+                                <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
+                                <md-card-content>
+                                    <h5 class="title">{{ movie.title_english }}</h5>
+                                    <p>{{movie.year}}</p>
+                                </md-card-content>
+                            </md-card>
+                        </md-content>
+                    </md-tab-body>
                 </md-tab>
             </md-tabs>
         </md-content>
@@ -51,6 +78,7 @@
         <script src="lib/angular/js/angular-material.min.js"></script>
         <script src="lib/loader/ng-loading-screen.js"></script>
         <script src="app/app.js"></script>
+        <script src="app/directive.js"></script>
         <script src="app/applicationController.js"></script>
     </body>
 </html>
