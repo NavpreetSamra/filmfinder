@@ -141,6 +141,7 @@ ul {
 	list-style: none;
 	margin-bottom: 0px !important;
 	margin-left: -25px;
+	border-bottom: 1px solid crimson;
 }
 ul > li {
 	list-style-type: none;
