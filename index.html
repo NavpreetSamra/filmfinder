@@ -30,8 +30,14 @@
                     <!--<md-content ng-style="heroImage" class="md-padding banner" ng-show="showMovie">-->
                     <md-content class="md-padding banner" ng-show="showMovie">
                         <div class="movie-header">
-                            <i class="material-icons back" ng-click="showMovie = false">arrow_back</i>
-                            <h3>Movie details</h3>
+                            <ul>
+                                <li>
+                                    <i class="material-icons back" ng-click="showMovie = false">arrow_back</i>
+                                </li>
+                                <li>
+                                    <h3 class="title-header">Movie details</h3>   
+                                </li>
+                            </ul>
                         </div>
                         <div class="movie-container">
                             <img class="cover" ng-src="{{movie.large_cover_image}}"/>
