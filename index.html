@@ -14,7 +14,7 @@
             <md-tabs md-dynamic-height>
                 <md-tab label="Popular" md-on-select="getMovies('Popular')">
                     <md-tab-body>
-                        <md-content class="md-padding" flex layout-wrap layout="row">
+                        <md-content class="md-padding" flex layout-wrap layout="row" id="top">
                             <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie(movie)" flex="30" ng-hide="showMovie">
                                 <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                                 <md-card-content>
@@ -22,7 +22,7 @@
                                     <p>{{movie.year}}</p>
                                 </md-card-content>
                             </md-card>
-                            <md-content class="md-padding banner" id="main" ng-show="showMovie" ng-view autoscroll>
+                            <md-content class="md-padding banner" ng-show="showMovie">
                                 <div class="movie-header">
                                     <ul>
                                         <li>

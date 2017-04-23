@@ -17,6 +17,10 @@ md-content.md-default-theme, md-content {
 md-card {
 	cursor: pointer;
 }
+md-card:focus, md-card:active {
+	outline: none;
+	border: 0px solid #fff;
+}
 .title {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -155,6 +159,10 @@ ul > li {
 	padding: 5px;
 	color: #000;
 }
+.back:focus, .back:active {
+	outline: none;
+	border: 0px solid #fff;
+}
 .title-header {
 	margin-left: 10px;
 	color: #000;
@@ -243,6 +251,7 @@ ul > li {
 }
 .summary-content-more {
 	cursor: pointer;
+	height: 30px;
 }
 
 .summary-content-more:active, .summary-content-more:focus {
