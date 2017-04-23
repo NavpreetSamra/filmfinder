@@ -45,9 +45,7 @@ angular.module('app').controller('applicationController', function ($scope,$http
 		$scope.showMovie = true;
 		$scope.movie = [];
     	$scope.movie = angular.copy(movie);
-		$scope.heroImage = {
-			'background': 'url(' + $scope.movie.background_image + ') top no-repeat fixed'
-		};
+		$scope.videoID = $scope.movie.yt_trailer_code;
 		console.log($scope.movie);
     }
 

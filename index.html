@@ -63,7 +63,20 @@
                                     </div>
                                 </div>
                                 <div class="movie-summary">
-                                    {{movie.synopsis}}
+                                    <h4>Summary</h4>
+                                    <p class="summary-content">{{movie.synopsis}}</p>
+                                </div>
+                                <div class="movie-trailer">
+                                    <h4>Trailer</h4>
+                                    <ng-youtube-embed 
+                                        video="videoID" 
+                                        autoplay="false"
+                                        color="white"
+                                        disablekb="true"
+                                        enablejsapi="false"
+                                        height="200px"
+                                        width="430px">
+                                    </ng-youtube-embed>
                                 </div>
                             </div>
                         </md-content>
@@ -80,7 +93,7 @@
                         </md-card>
                         <!--<md-button class="md-raised md-accent" ng-click="loadMore('Latest')" ng-hide="myLoadingScope">Primary</md-button>-->
                     </md-content>
-                    <md-content class="md-padding banner" ng-show="showMovie" ng-style="heroImage">
+                    <md-content class="md-padding banner" ng-show="showMovie">
                         <div class="movie-header">
                             <ul>
                                 <li>
@@ -119,10 +132,26 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="movie-summary">
+                                <h4>Summary</h4>
+                                <p class="summary-content">{{movie.synopsis}}</p>
+                            </div>
+                            <div class="movie-trailer">
+                                <h4>Trailer</h4>
+                                <ng-youtube-embed 
+                                    video="videoID" 
+                                    autoplay="false"
+                                    color="white"
+                                    disablekb="true"
+                                    enablejsapi="false"
+                                    height="200px"
+                                    width="430px">
+                                </ng-youtube-embed>
+                            </div>
                         </div>
                     </md-content>
                 </md-tab>
-                <md-tab label="Search" class="tab-right">
+                <md-tab label="Search" class="tab-right" md-on-select="showMovie = false">
                     <md-tab-label>
                         <i class="material-icons md-dark">search</i>
                     </md-tab-label>
@@ -145,7 +174,7 @@
                                 </md-card-content>
                             </md-card>
                         </md-content>
-                        <md-content class="md-padding banner" ng-show="showMovie" ng-style="heroImage">
+                        <md-content class="md-padding banner" ng-show="showMovie">
                             <div class="movie-header">
                                 <ul>
                                     <li>
@@ -184,6 +213,22 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <div class="movie-summary">
+                                    <h4>Summary</h4>
+                                    <p class="summary-content">{{movie.synopsis}}</p>
+                                </div>
+                                <div class="movie-trailer">
+                                    <h4>Trailer</h4>
+                                    <ng-youtube-embed 
+                                        video="videoID" 
+                                        autoplay="false"
+                                        color="white"
+                                        disablekb="true"
+                                        enablejsapi="false"
+                                        height="200px"
+                                        width="430px">
+                                    </ng-youtube-embed>
+                                </div>
                             </div>
                         </md-content>
                     </md-tab-body>
@@ -199,7 +244,8 @@
         <script src="lib/angular/js/angular-messages.min.js"></script>
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
         <script src="lib/angular/js/angular-material.min.js"></script>
-        <script src="lib/loader/ng-loading-screen.js"></script>
+        <script src="lib/plugin/ng-loading-screen.js"></script>
+        <script src="lib/plugin/ng-youtube-embed.min.js"></script>
         <script src="app/app.js"></script>
         <script src="app/directive.js"></script>
         <script src="app/applicationController.js"></script>
