@@ -127,6 +127,7 @@ md-tab-item:last-of-type {
 }
 .cover {
 	width: 170px;
+	height: 255px;
 	border-radius: 4px;
 }
 /*.close {
@@ -236,5 +237,16 @@ ul > li {
 	margin-top: 12px;
 }
 .summary-content {
-	font-size: 13px;
+	font-size: 14px;
+    display: block;
+	overflow-y: hidden;
+}
+.summary-content-more {
+	cursor: pointer;
+}
+
+.summary-content-more:active, .summary-content-more:focus {
+	cursor: pointer;
+	border: 0px solid #fff;
+	outline:none;
 }

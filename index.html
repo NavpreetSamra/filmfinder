@@ -14,144 +14,147 @@
             <md-tabs md-dynamic-height>
                 <md-tab label="Popular" md-on-select="getMovies('Popular')">
                     <md-tab-body>
-                        <md-content class="md-padding" flex layout-wrap layout="row" ng-hide="showMovie">
-                            <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie(movie)" flex="30">
+                        <md-content class="md-padding" flex layout-wrap layout="row">
+                            <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie(movie)" flex="30" ng-hide="showMovie">
                                 <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                                 <md-card-content>
                                     <h5 class="title">{{ movie.title_english }}</h5>
                                     <p>{{movie.year}}</p>
                                 </md-card-content>
                             </md-card>
-                        </md-content>
-                        <md-content class="md-padding banner" ng-show="showMovie">
-                            <div class="movie-header">
-                                <ul>
-                                    <li>
-                                        <i class="material-icons back" ng-click="showMovie = false">arrow_back</i>
-                                    </li>
-                                    <li>
-                                        <h3 class="title-header">Movie details</h3>   
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="movie-container">
-                                <img class="cover" ng-src="{{movie.large_cover_image}}"/>
-                                <div class="right-content">
-                                    <h4 class="movie-title">{{movie.title}}</h4>
-                                    <p class="movie-year">{{movie.year}}</p>
-                                    <div class="movie-rating">
-                                        <ul>
-                                            <li class="imdb-icon">
-                                                <img src="icons/imdb_icon.png">
-                                            </li>
-                                            <li>
-                                                <h5 class="imdb-rating">{{movie.rating}}</h5>
-                                            </li>
-                                            <li>
-                                                <span class="star"></span>
-                                            </li>
-                                        </ul>
+                            <md-content class="md-padding banner" id="main" ng-show="showMovie" ng-view autoscroll>
+                                <div class="movie-header">
+                                    <ul>
+                                        <li>
+                                            <i class="material-icons back" ng-click="goback()">arrow_back</i>
+                                        </li>
+                                        <li>
+                                            <h3 class="title-header">Movie details</h3>   
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="movie-container">
+                                    <img class="cover" ng-src="{{movie.large_cover_image}}"/>
+                                    <div class="right-content">
+                                        <h4 class="movie-title">{{movie.title}}</h4>
+                                        <p class="movie-year">{{movie.year}}</p>
+                                        <div class="movie-rating">
+                                            <ul>
+                                                <li class="imdb-icon">
+                                                    <img src="icons/imdb_icon.png">
+                                                </li>
+                                                <li>
+                                                    <h5 class="imdb-rating">{{movie.rating}}</h5>
+                                                </li>
+                                                <li>
+                                                    <span class="star"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li ng-repeat="torrent in movie.torrents" >
+                                                    <md-button class="md-fab md-primary movie-torrent" ng-click="downloadFile(torrent.url)">
+                                                        {{torrent.quality}}
+                                                    </md-button>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <ul>
-                                            <li ng-repeat="torrent in movie.torrents" >
-                                                <md-button class="md-fab md-primary movie-torrent" ng-click="downloadFile(torrent.url)">
-                                                    {{torrent.quality}}
-                                                </md-button>
-                                            </li>
-                                        </ul>
+                                    <div class="movie-summary">
+                                        <h4>Summary</h4>
+                                        <p class="summary-content" ng-style="contentCss">{{movie.synopsis}}</p>
+                                        <h6 class="summary-content-more" ng-click="showContent()">{{contentExtra}}</h6>
+                                    </div>
+                                    <div class="movie-trailer">
+                                        <h4>Trailer</h4>
+                                        <ng-youtube-embed 
+                                            video="videoID" 
+                                            autoplay="false"
+                                            color="white"
+                                            disablekb="true"
+                                            enablejsapi="false"
+                                            height="200px"
+                                            width="430px">
+                                        </ng-youtube-embed>
                                     </div>
                                 </div>
-                                <div class="movie-summary">
-                                    <h4>Summary</h4>
-                                    <p class="summary-content">{{movie.synopsis}}</p>
-                                </div>
-                                <div class="movie-trailer">
-                                    <h4>Trailer</h4>
-                                    <ng-youtube-embed 
-                                        video="videoID" 
-                                        autoplay="false"
-                                        color="white"
-                                        disablekb="true"
-                                        enablejsapi="false"
-                                        height="200px"
-                                        width="430px">
-                                    </ng-youtube-embed>
-                                </div>
-                            </div>
+                            </md-content>
                         </md-content>
                     </md-tab-body>
                 </md-tab>
                 <md-tab label="Latest" md-on-select="getMovies('Latest')">
-                    <md-content class="md-padding" flex layout-wrap layout="row" ng-hide="showMovie">
-                        <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie(movie)" flex="30">
-                            <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
-                            <md-card-content>
-                                <h5 class="title">{{ movie.title_english }}</h5>
-                                <p>{{movie.year}}</p>
-                            </md-card-content>
-                        </md-card>
-                        <!--<md-button class="md-raised md-accent" ng-click="loadMore('Latest')" ng-hide="myLoadingScope">Primary</md-button>-->
-                    </md-content>
-                    <md-content class="md-padding banner" ng-show="showMovie">
-                        <div class="movie-header">
-                            <ul>
-                                <li>
-                                    <i class="material-icons back" ng-click="showMovie = false">arrow_back</i>
-                                </li>
-                                <li>
-                                    <h3 class="title-header">Movie details</h3>   
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="movie-container">
-                            <img class="cover" ng-src="{{movie.large_cover_image}}"/>
-                            <div class="right-content">
-                                <h4 class="movie-title">{{movie.title}}</h4>
-                                <p class="movie-year">{{movie.year}}</p>
-                                <div class="movie-rating">
+                    <md-tab-body>
+                        <md-content class="md-padding" flex layout-wrap layout="row">
+                            <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie(movie)" flex="30" ng-hide="showMovie">
+                                <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
+                                <md-card-content>
+                                    <h5 class="title">{{ movie.title_english }}</h5>
+                                    <p>{{movie.year}}</p>
+                                </md-card-content>
+                            </md-card>
+                            <md-content class="md-padding banner" id="main" ng-show="showMovie" ng-view autoscroll>
+                                <div class="movie-header">
                                     <ul>
-                                        <li class="imdb-icon">
-                                            <img src="icons/imdb_icon.png">
+                                        <li>
+                                            <i class="material-icons back" ng-click="goback()">arrow_back</i>
                                         </li>
                                         <li>
-                                            <h5 class="imdb-rating">{{movie.rating}}</h5>
-                                        </li>
-                                        <li>
-                                            <span class="star"></span>
+                                            <h3 class="title-header">Movie details</h3>   
                                         </li>
                                     </ul>
                                 </div>
-                                <div>
-                                    <ul>
-                                        <li ng-repeat="torrent in movie.torrents" >
-                                            <md-button class="md-fab md-primary movie-torrent" ng-click="downloadFile(torrent.url)">
-                                                {{torrent.quality}}
-                                            </md-button>
-                                        </li>
-                                    </ul>
+                                <div class="movie-container">
+                                    <img class="cover" ng-src="{{movie.large_cover_image}}"/>
+                                    <div class="right-content">
+                                        <h4 class="movie-title">{{movie.title}}</h4>
+                                        <p class="movie-year">{{movie.year}}</p>
+                                        <div class="movie-rating">
+                                            <ul>
+                                                <li class="imdb-icon">
+                                                    <img src="icons/imdb_icon.png">
+                                                </li>
+                                                <li>
+                                                    <h5 class="imdb-rating">{{movie.rating}}</h5>
+                                                </li>
+                                                <li>
+                                                    <span class="star"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li ng-repeat="torrent in movie.torrents" >
+                                                    <md-button class="md-fab md-primary movie-torrent" ng-click="downloadFile(torrent.url)">
+                                                        {{torrent.quality}}
+                                                    </md-button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="movie-summary">
+                                        <h4>Summary</h4>
+                                        <p class="summary-content" ng-style="contentCss">{{movie.synopsis}}</p>
+                                        <h6 class="summary-content-more" ng-click="showContent()">{{contentExtra}}</h6>
+                                    </div>
+                                    <div class="movie-trailer">
+                                        <h4>Trailer</h4>
+                                        <ng-youtube-embed 
+                                            video="videoID" 
+                                            autoplay="false"
+                                            color="white"
+                                            disablekb="true"
+                                            enablejsapi="false"
+                                            height="200px"
+                                            width="430px">
+                                        </ng-youtube-embed>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="movie-summary">
-                                <h4>Summary</h4>
-                                <p class="summary-content">{{movie.synopsis}}</p>
-                            </div>
-                            <div class="movie-trailer">
-                                <h4>Trailer</h4>
-                                <ng-youtube-embed 
-                                    video="videoID" 
-                                    autoplay="false"
-                                    color="white"
-                                    disablekb="true"
-                                    enablejsapi="false"
-                                    height="200px"
-                                    width="430px">
-                                </ng-youtube-embed>
-                            </div>
-                        </div>
-                    </md-content>
+                            </md-content>
+                        </md-content>
+                    </md-tab-body>
                 </md-tab>
-                <md-tab label="Search" class="tab-right" md-on-select="showMovie = false">
+                <md-tab label="Search" class="tab-right" md-on-select="goback()">
                     <md-tab-label>
                         <i class="material-icons md-dark">search</i>
                     </md-tab-label>
@@ -178,7 +181,7 @@
                             <div class="movie-header">
                                 <ul>
                                     <li>
-                                        <i class="material-icons back" ng-click="showMovie = false">arrow_back</i>
+                                        <i class="material-icons back" ng-click="goback()">arrow_back</i>
                                     </li>
                                     <li>
                                         <h3 class="title-header">Movie details</h3>   
@@ -214,8 +217,8 @@
                                     </div>
                                 </div>
                                 <div class="movie-summary">
-                                    <h4>Summary</h4>
-                                    <p class="summary-content">{{movie.synopsis}}</p>
+                                    <p class="summary-content" ng-style="contentCss">{{movie.synopsis}}</p>
+                                    <h6 class="summary-content-more" ng-click="showContent()">{{contentExtra}}</h6>
                                 </div>
                                 <div class="movie-trailer">
                                     <h4>Trailer</h4>

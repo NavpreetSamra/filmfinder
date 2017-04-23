@@ -1,4 +1,4 @@
-angular.module('app').controller('applicationController',['$scope','$http','$mdToast', function ($scope,$http,$mdToast) {
+angular.module('app').controller('applicationController',['$scope','$http','$mdToast','$window', function ($scope,$http,$mdToast,$window) {
     
     $scope.movies = [];
 	$scope.searchMovies = [];
@@ -6,6 +6,10 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
     $scope.myLoadingScope = false;
 	$scope.currentPage = 1;
 	$scope.showMovie = false;
+	$scope.contentExtra = 'Show more';
+	$scope.contentCss = {
+		'height': '40px'
+	};
     $scope.getMovies = function(type) {
 		$scope.showMovie = false;
 		url='';
@@ -48,6 +52,8 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 		// $scope.heroImage = {
 		// 	'background': 'url(' + $scope.movie.background_image + ')'
 		// };
+		console.log($window)
+		$window.scrollY = 0;
 		$scope.videoID = $scope.movie.yt_trailer_code;
 		// console.log($scope.movie);
     }
@@ -82,4 +88,27 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 			url: url
 		});
 	}
+
+	$scope.showContent = function() {
+		if($scope.contentExtra === 'Show more') {
+			$scope.contentExtra = 'Show less';
+			$scope.contentCss = {
+				'height': '100%;',
+				'transition': 'height 75ms'
+			};
+		} else {
+			$scope.contentExtra = 'Show more';
+			$scope.contentCss = {
+				'height': '40px'
+			};
+		}
+	}
+	$scope.goback = function() {
+		$scope.showMovie = false;
+		$scope.contentExtra = 'Show more';
+		$scope.contentCss = {
+			'height': '40px'
+		};
+	}
+
 }]);
