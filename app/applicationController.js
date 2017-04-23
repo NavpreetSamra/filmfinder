@@ -1,4 +1,4 @@
-angular.module('app').controller('applicationController', function ($scope,$http,$mdToast) {
+angular.module('app').controller('applicationController',['$scope','$http','$mdToast', function ($scope,$http,$mdToast) {
     
     $scope.movies = [];
 	$scope.searchMovies = [];
@@ -45,8 +45,11 @@ angular.module('app').controller('applicationController', function ($scope,$http
 		$scope.showMovie = true;
 		$scope.movie = [];
     	$scope.movie = angular.copy(movie);
+		// $scope.heroImage = {
+		// 	'background': 'url(' + $scope.movie.background_image + ')'
+		// };
 		$scope.videoID = $scope.movie.yt_trailer_code;
-		console.log($scope.movie);
+		// console.log($scope.movie);
     }
 
 	$scope.searchMovie = function() {
@@ -79,4 +82,4 @@ angular.module('app').controller('applicationController', function ($scope,$http
 			url: url
 		});
 	}
-});
+}]);
