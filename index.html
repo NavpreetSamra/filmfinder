@@ -14,7 +14,7 @@
             <md-tabs md-dynamic-height>
                 <md-tab label="Popular" md-on-select="getMovies('Popular')">
                     <md-content class="md-padding" flex layout-wrap layout="row" ng-hide="showMovie">
-                        <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie($index)" flex="30">
+                        <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie(movie)" flex="30">
                             <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                             <md-card-content>
                                 <h5 class="title">{{ movie.title_english }}</h5>
@@ -28,7 +28,7 @@
                         </md-card>
                     </md-content>
                     <!--<md-content ng-style="heroImage" class="md-padding banner" ng-show="showMovie">-->
-                    <md-content class="md-padding banner" ng-show="showMovie">
+                    <md-content class="md-padding banner" ng-show="showMovie" ng-style="heroImage">
                         <div class="movie-header">
                             <ul>
                                 <li>
@@ -44,14 +44,25 @@
                             <!--<md-button class="md-fab md-mini md-accent close" aria-label="close" ng-click="showMovie = false">
                                 <md-icon md-svg-src="icons/close.svg"></md-icon>
                             </md-button>-->
-                            <h4 class="movie-title">{{movie.title}}</h4>
+                            <div class="right-content">
+                                <h4 class="movie-title">{{movie.title}}</h4>
+                                <p class="movie-year">{{movie.year}}</p>
+                                <md-button class="md-fab md-primary movie-torrent" ng-repeat="torrent in movie.torrents" ng-click="downloadFile(torrent.url)">{{torrent.quality}}
+                                    <!--<md-icon class="material-icons">file_download</md-icon>-->
+                                </md-button>
+                                <!--<div class="genre-content">
+                                    <span class="movie-genre" ng-repeat="genre in movie.genres">{{genre}}</span>
+                                </div>-->
+                                <!--<div class="torrent-content">
+                                    <md-button ng-repeat="torrent in movie.torrents" class="movie-torrent md-raised md-accent">{{torrent.quality}}</md-button>
+                                </div>-->
+                            </div>
                         </div>
                     </md-content>
-                    </div>
                 </md-tab>
                 <md-tab label="Latest" md-on-select="getMovies('Latest')">
-                    <md-content class="md-padding" flex layout-wrap layout="row">
-                        <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie($index)" flex="30">
+                    <md-content class="md-padding" flex layout-wrap layout="row" ng-hide="showMovie">
+                        <md-card ng-repeat="movie in movies track by $index" ng-click="viewMovie(movie)" flex="30">
                             <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                             <md-card-content>
                                 <h5 class="title">{{ movie.title_english }}</h5>
@@ -60,13 +71,44 @@
                         </md-card>
                         <!--<md-button class="md-raised md-accent" ng-click="loadMore('Latest')" ng-hide="myLoadingScope">Primary</md-button>-->
                     </md-content>
+                    <md-content class="md-padding banner" ng-show="showMovie" ng-style="heroImage">
+                        <div class="movie-header">
+                            <ul>
+                                <li>
+                                    <i class="material-icons back" ng-click="showMovie = false">arrow_back</i>
+                                </li>
+                                <li>
+                                    <h3 class="title-header">Movie details</h3>   
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="movie-container">
+                            <img class="cover" ng-src="{{movie.large_cover_image}}"/>
+                            <!--<md-button class="md-fab md-mini md-accent close" aria-label="close" ng-click="showMovie = false">
+                                <md-icon md-svg-src="icons/close.svg"></md-icon>
+                            </md-button>-->
+                            <div class="right-content">
+                                <h4 class="movie-title">{{movie.title}}</h4>
+                                <p class="movie-year">{{movie.year}}</p>
+                                <md-button class="md-fab md-primary movie-torrent" ng-repeat="torrent in movie.torrents" ng-click="downloadFile(torrent.url)">{{torrent.quality}}
+                                    <!--<md-icon class="material-icons">file_download</md-icon>-->
+                                </md-button>
+                                <!--<div class="genre-content">
+                                    <span class="movie-genre" ng-repeat="genre in movie.genres">{{genre}}</span>
+                                </div>-->
+                                <!--<div class="torrent-content">
+                                    <md-button ng-repeat="torrent in movie.torrents" class="movie-torrent md-raised md-accent">{{torrent.quality}}</md-button>
+                                </div>-->
+                            </div>
+                        </div>
+                    </md-content>
                 </md-tab>
                 <md-tab label="Search" class="tab-right">
                     <md-tab-label>
                         <i class="material-icons md-dark">search</i>
                     </md-tab-label>
                     <md-tab-body>
-                        <md-content class="md-padding" flex layout-wrap layout="row">
+                        <md-content class="md-padding" flex layout-wrap layout="row" ng-hide="showMovie">
                             <div class="search-container">
                                 <div class="searchBarMain">
                                     <i class="material-icons searchBarSearchIcon noUserSelect">search</i>
@@ -76,13 +118,44 @@
                                 <h5 class="movie-length" ng-show="searchMovies.length > 0">{{searchMovies.length}} Movie(s) found.</h5>
                                 <!--<h5 class="movie-length" ng-show="searchMovies.length = 0">No movies found.</h5>                                -->
                             </div>
-                            <md-card ng-repeat="movie in searchMovies track by $index" ng-click="viewMovie($index)" flex="30">
+                            <md-card ng-repeat="movie in searchMovies track by $index" ng-click="viewMovie(movie)" flex="30">
                                 <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                                 <md-card-content>
                                     <h5 class="title">{{ movie.title_english }}</h5>
                                     <p>{{movie.year}}</p>
                                 </md-card-content>
                             </md-card>
+                        </md-content>
+                        <md-content class="md-padding banner" ng-show="showMovie" ng-style="heroImage">
+                            <div class="movie-header">
+                                <ul>
+                                    <li>
+                                        <i class="material-icons back" ng-click="showMovie = false">arrow_back</i>
+                                    </li>
+                                    <li>
+                                        <h3 class="title-header">Movie details</h3>   
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="movie-container">
+                                <img class="cover" ng-src="{{movie.large_cover_image}}"/>
+                                <!--<md-button class="md-fab md-mini md-accent close" aria-label="close" ng-click="showMovie = false">
+                                    <md-icon md-svg-src="icons/close.svg"></md-icon>
+                                </md-button>-->
+                                <div class="right-content">
+                                    <h4 class="movie-title">{{movie.title}}</h4>
+                                    <p class="movie-year">{{movie.year}}</p>
+                                    <md-button class="md-fab md-primary movie-torrent" ng-repeat="torrent in movie.torrents" ng-click="downloadFile(torrent.url)">{{torrent.quality}}
+                                        <!--<md-icon class="material-icons">file_download</md-icon>-->
+                                    </md-button>
+                                    <!--<div class="genre-content">
+                                        <span class="movie-genre" ng-repeat="genre in movie.genres">{{genre}}</span>
+                                    </div>-->
+                                    <!--<div class="torrent-content">
+                                        <md-button ng-repeat="torrent in movie.torrents" class="movie-torrent md-raised md-accent">{{torrent.quality}}</md-button>
+                                    </div>-->
+                                </div>
+                            </div>
                         </md-content>
                     </md-tab-body>
                 </md-tab>

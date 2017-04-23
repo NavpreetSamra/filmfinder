@@ -141,7 +141,6 @@ ul {
 	list-style: none;
 	margin-bottom: 0px !important;
 	margin-left: -25px;
-	border-bottom: 1px solid crimson;
 }
 ul > li {
 	list-style-type: none;
@@ -149,16 +148,37 @@ ul > li {
 }
 .back {
 	cursor: pointer;
-	background-color: #f5f5f5;
-	border-radius: 50%;
 	padding: 5px;
-}
-.movie-title {
-	float: right;
-	margin-right: 80px;
-	width: 165px;
-	color: crimson;
+	color: #fff;
 }
 .title-header {
 	margin-left: 10px;
+	color: #fff;
+}
+.right-content {
+	float: right;
+}
+.movie-title {
+	margin-right: 80px;
+	width: 165px;
+	color: #fff;
+	font-size: 18px;	
+}
+.movie-year {
+	color: #fff;
+	font-size: 14px;
+}
+.genre-content {
+	height: auto;
+	width: 100%;
+}
+.movie-genre {
+	padding: 5px;
+	border-radius: 10px;
+	margin-right: 3px;
+	color: #fff;
+	background-color: rgba(0, 0 , 0 , 0.5);
+}
+.movie-torrent {
+	background-color: crimson !important;
 }

@@ -41,13 +41,13 @@ angular.module('app').controller('applicationController', function ($scope,$http
 		}
 	}
 	
-    $scope.viewMovie = function(index) {
+    $scope.viewMovie = function(movie) {
 		$scope.showMovie = true;
-    	$scope.movie = angular.copy($scope.movies[index]);
+		$scope.movie = [];
+    	$scope.movie = angular.copy(movie);
 		$scope.heroImage = {
 			background: 'url(' + $scope.movie.background_image + ') no-repeat'
 		};
-		console.log($scope.movie)
     }
 
 	$scope.searchMovie = function() {
@@ -72,6 +72,12 @@ angular.module('app').controller('applicationController', function ($scope,$http
 				$scope.movies.push(element)
 			}, this);
 			//$scope.movies.push(response.data.data.movies);
+		});
+	}
+
+	$scope.downloadFile = function(url) {
+		chrome.downloads.download({
+			url: url
 		});
 	}
 });
