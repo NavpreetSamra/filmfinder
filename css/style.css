@@ -5,10 +5,11 @@ body {
 .main-container {
     width: 500px;
     height: 600px;
+	background-color: rgba(151, 153, 155, 0.1) !important;
 }
 md-content.md-default-theme, md-content {
     color: rgba(0,0,0,0.87);
-    background-color: rgb(255,255,255) !important; 
+    background-color: rgba(151, 153, 155, 0) !important; 
 }
 .md-tab {
 	font-size: 12px !important;
@@ -118,13 +119,12 @@ md-tab-item:last-of-type {
 }
 .movie-container {
 	padding: 16px;
+	z-index: 2;
+	position: relative;
 }
 .banner {
 	width: 100%;
 	height: 100%;
-	background-attachment: fixed;
-	background-position: center center;
-	background-size: cover; 
 }
 .cover {
 	width: 170px;
@@ -140,20 +140,24 @@ md-tab-item:last-of-type {
 ul {
 	list-style: none;
 	margin-bottom: 0px !important;
-	margin-left: -25px;
+	margin-left: -40px !important;
 }
 ul > li {
 	list-style-type: none;
 	display: inline-block;
 }
+.movie-header {
+	z-index: 2;
+	position: relative;
+}
 .back {
 	cursor: pointer;
 	padding: 5px;
-	color: #fff;
+	color: #000;
 }
 .title-header {
 	margin-left: 10px;
-	color: #fff;
+	color: #000;
 }
 .right-content {
 	float: right;
@@ -161,11 +165,11 @@ ul > li {
 .movie-title {
 	margin-right: 80px;
 	width: 165px;
-	color: #fff;
+	color: #000;
 	font-size: 18px;	
 }
 .movie-year {
-	color: #fff;
+	color: #000;
 	font-size: 14px;
 }
 .genre-content {
@@ -176,9 +180,60 @@ ul > li {
 	padding: 5px;
 	border-radius: 10px;
 	margin-right: 3px;
-	color: #fff;
+	color: #000;
 	background-color: rgba(0, 0 , 0 , 0.5);
 }
 .movie-torrent {
 	background-color: crimson !important;
+}
+.movie-rating {
+	padding: 10px 10px 10px 0px;
+	margin-top: -10px;
+}
+.imdb-icon {
+	width: 60px;
+}
+.imdb-icon > img {
+	width: 40px;
+}
+.imdb-rating {
+	color: #000;
+	font-size: 16px;
+}
+.star {
+	position: relative;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: .9em;
+	margin-right: .9em;
+	margin-bottom: 1.2em;
+	border-right: .3em solid transparent;
+	border-bottom: .7em  solid #FC0;
+	border-left: .3em solid transparent;
+	/* Controlls the size of the stars. */
+	font-size: 7px;
+}
+.star:before, .star:after {
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: .6em;
+	left: -1em;
+	border-right: 1em solid transparent;
+	border-bottom: .7em  solid #FC0;
+	border-left: 1em solid transparent;
+	-webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+}
+.star:after {
+  	-webkit-transform: rotate(35deg);
+	transform: rotate(35deg);
+}
+.movie-summary {
+	background-color: #f5f5f5;
+	color: #000;
+	margin-top: 39px;
 }

@@ -46,8 +46,9 @@ angular.module('app').controller('applicationController', function ($scope,$http
 		$scope.movie = [];
     	$scope.movie = angular.copy(movie);
 		$scope.heroImage = {
-			background: 'url(' + $scope.movie.background_image + ') no-repeat'
+			'background': 'url(' + $scope.movie.background_image + ') top no-repeat fixed'
 		};
+		console.log($scope.movie);
     }
 
 	$scope.searchMovie = function() {
