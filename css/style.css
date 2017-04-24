@@ -21,6 +21,15 @@ md-card:focus, md-card:active {
 	outline: none;
 	border: 0px solid #fff;
 }
+md-card.ng-hide {
+	animation: fadeOut .5s;
+}
+md-card.ng-hide-remove {
+  animation: fadeIn 1s;
+}
+.banner.ng-hide-remove {
+  animation: fadeInUp 2s;
+}
 .title {
     overflow-x: hidden;
     overflow-y: scroll;

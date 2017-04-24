@@ -1,4 +1,4 @@
-angular.module('app').controller('applicationController',['$scope','$http','$mdToast', function ($scope,$http,$mdToast) {
+angular.module('app').controller('applicationController',['$scope','$http','$mdToast','$location','$anchorScroll', function ($scope,$http,$mdToast,$location,$anchorScroll) {
     $scope.movies = [];
 	$scope.searchMovies = [];
     $scope.movie = [];
@@ -9,6 +9,13 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 	$scope.contentCss = {
 		'height': '40px'
 	};
+	$scope.toast = $mdToast.simple()
+		.textContent('No Network Found!')
+		.action('Refresh')
+		.highlightAction(true)
+		.highlightClass('md-accent')// Accent is used by default, this just demonstrates the usage.
+		.position('top, right');
+
     $scope.getMovies = function(type) {
 		$scope.showMovie = false;
 		url='';
@@ -35,12 +42,11 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 			});
 		}
 		else {
-			$mdToast.show(
-				$mdToast.simple()
-				.textContent('No Network Found!')
-				.position('top, right')
-				.hideDelay(2000)
-			);
+			$mdToast.show($scope.toast).then(function(response) {
+				if ( response == 'ok' ) {
+					$scope.getMovies(type)
+				}
+			});
 		}
 	}
 	
@@ -49,11 +55,11 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 		$scope.movie = [];
     	$scope.movie = angular.copy(movie);
 		$scope.videoID = $scope.movie.yt_trailer_code;
-		// console.log($scope.movie);
+		$('.main-container').scrollTop(0)
     }
 
 	$scope.searchMovie = function() {
-		if($scope.searchInput.length != 0) {
+		if($scope.searchInput.length != 0 && navigator.onLine) {
 			$scope.myLoadingScope = true;
 			$scope.searchMovies = [];
 			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+$scope.searchInput)
@@ -62,6 +68,15 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 				if(response.data.data.movie_count > 0)
 					$scope.searchMovies = angular.copy(response.data.data.movies);
 			});
+		}
+		else {
+			if(!navigator.onLine) {
+				$mdToast.show($scope.toast).then(function(response) {
+					if ( response == 'ok' ) {
+						$scope.searchMovie()
+					}
+				});
+			}
 		}
 	}
 
@@ -87,7 +102,8 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 		if($scope.contentExtra === 'Show more') {
 			$scope.contentExtra = 'Show less';
 			$scope.contentCss = {
-				'height': '100%;'
+				'height': '100%;',
+				'transition': 'height 1s ease;'
 			};
 		} else {
 			$scope.contentExtra = 'Show more';
