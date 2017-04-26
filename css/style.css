@@ -45,6 +45,10 @@ md-content.md-default-theme, md-content {
     color: rgba(0,0,0,0.87);
     background-color: rgba(151, 153, 155, 0) !important; 
 }
+md-chips.md-default-theme md-chip, md-chips md-chip {
+    background: crimson;
+    color: white;
+}
 .md-tab {
 	font-size: 12px !important;
 }
@@ -54,9 +58,6 @@ md-card {
 md-card:focus, md-card:active {
 	outline: none;
 	border: 0px solid #fff;
-}
-md-card.ng-hide {
-	animation: fadeOut .5s;
 }
 md-card.ng-hide-remove {
   animation: fadeIn 1s;
@@ -73,7 +74,7 @@ md-card:hover {
 	width: 145.6px;
 }
 .banner.ng-hide-remove {
-  animation: fadeInUp 1s;
+  animation: fadeIn 2s;
 }
 .title {
     overflow-x: hidden;
@@ -260,7 +261,7 @@ md-fab-speed-dial {
 	font-weight: 500;
 }
 .star {
-	color: red;
+	color: crimson;
 }
 .movie-summary {
 	color: #000;

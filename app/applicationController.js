@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('applicationController',['$scope','$http','$mdToast','$location','$anchorScroll','$sce', function ($scope,$http,$mdToast,$location,$anchorScroll,$sce) {
+.controller('applicationController',['$scope','$http','$mdToast','$location','$sce', function ($scope,$http,$mdToast,$location,$sce) {
     $scope.movies = [];
 	$scope.searchMovies = [];
     $scope.movie = [];
@@ -9,6 +9,7 @@ angular.module('app')
 	$scope.contentExtra = 'Show more';
 	$scope.videoID;
 	$scope.isOpen = false;
+	$scope.scrollPos = 0;
 	$scope.contentCss = {
 		'height': '32px'
 	};
@@ -28,9 +29,9 @@ angular.module('app')
 		$scope.showMovie = false;
 		url='';
 		if(type === 'Popular') {
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count&with_rt_ratings=true'
+			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count'
 		} else {
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&with_rt_ratings=true'
+			url='https://yts.ag/api/v2/list_movies.json?limit=21'
 		}
 		$scope.movies = [];
 		if(navigator.onLine) {
@@ -68,6 +69,7 @@ angular.module('app')
     	$scope.movie = angular.copy(movie);
 		$scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
 		$scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
+		$scope.scrollPos = $('.main-container').scrollTop();
 		$('.main-container').scrollTop(0)
     }
 
@@ -75,7 +77,7 @@ angular.module('app')
 		if($scope.searchInput.length != 0 && navigator.onLine) {
 			$scope.myLoadingScope = true;
 			$scope.searchMovies = [];
-			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&with_rt_ratings=true&query_term='+$scope.searchInput)
+			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+$scope.searchInput)
 			.then(function(response) {
 				$scope.myLoadingScope = false;
 				if(response.data.data.movie_count > 0)
@@ -93,14 +95,15 @@ angular.module('app')
 		}
 	}
 
-	$scope.loadMore = function() {
-		$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&page='+($scope.currentPage+1))
+	$scope.loadMore = function(type) {
+		$scope.myLoadingScope = true;		
+		$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count&page='+($scope.currentPage+1))
 		.then(function(response) {
-			$scope.myLoadingScope = false;
 			$scope.currentPage = response.data.data.page_number;
 			response.data.data.movies.forEach(function(element) {
 				$scope.movies.push(element)
-			}, this);
+			});
+			$scope.myLoadingScope = false;
 		});
 	}
 
@@ -130,6 +133,9 @@ angular.module('app')
 		$scope.contentCss = {
 			'height': '32px'
 		};
+		$('.main-container').animate({
+			scrollTop: $scope.scrollPos
+		},20);
 	}
 
 }]);
