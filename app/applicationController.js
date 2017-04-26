@@ -1,4 +1,5 @@
-angular.module('app').controller('applicationController',['$scope','$http','$mdToast','$location','$anchorScroll', function ($scope,$http,$mdToast,$location,$anchorScroll) {
+angular.module('app')
+.controller('applicationController',['$scope','$http','$mdToast','$location','$anchorScroll','$sce', function ($scope,$http,$mdToast,$location,$anchorScroll,$sce) {
     $scope.movies = [];
 	$scope.searchMovies = [];
     $scope.movie = [];
@@ -6,23 +7,30 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 	$scope.currentPage = 1;
 	$scope.showMovie = false;
 	$scope.contentExtra = 'Show more';
+	$scope.videoID;
+	$scope.isOpen = false;
 	$scope.contentCss = {
-		'height': '40px'
+		'height': '32px'
 	};
+
+	$scope.openMenu = function($mdOpenMenu, ev) {
+      	$mdOpenMenu(ev);
+    };
+
 	$scope.toast = $mdToast.simple()
 		.textContent('No Network Found!')
 		.action('Refresh')
 		.highlightAction(true)
-		.highlightClass('md-accent')// Accent is used by default, this just demonstrates the usage.
+		.highlightClass('md-accent')
 		.position('top, right');
 
     $scope.getMovies = function(type) {
 		$scope.showMovie = false;
 		url='';
 		if(type === 'Popular') {
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count'
+			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count&with_rt_ratings=true'
 		} else {
-			url='https://yts.ag/api/v2/list_movies.json?limit=21'
+			url='https://yts.ag/api/v2/list_movies.json?limit=21&with_rt_ratings=true'
 		}
 		$scope.movies = [];
 		if(navigator.onLine) {
@@ -49,12 +57,17 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 			});
 		}
 	}
-	
+
     $scope.viewMovie = function(movie) {
 		$scope.showMovie = true;
+		$scope.contentExtra = 'Show more';
+		$scope.contentCss = {
+			'height': '32px'
+		};
 		$scope.movie = [];
     	$scope.movie = angular.copy(movie);
-		$scope.videoID = $scope.movie.yt_trailer_code;
+		$scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
+		$scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
 		$('.main-container').scrollTop(0)
     }
 
@@ -62,7 +75,7 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 		if($scope.searchInput.length != 0 && navigator.onLine) {
 			$scope.myLoadingScope = true;
 			$scope.searchMovies = [];
-			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+$scope.searchInput)
+			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&with_rt_ratings=true&query_term='+$scope.searchInput)
 			.then(function(response) {
 				$scope.myLoadingScope = false;
 				if(response.data.data.movie_count > 0)
@@ -88,11 +101,10 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 			response.data.data.movies.forEach(function(element) {
 				$scope.movies.push(element)
 			}, this);
-			//$scope.movies.push(response.data.data.movies);
 		});
 	}
 
-	$scope.downloadFile = function(url) {
+	$scope.downloadFile = function(url, quality) {
 		chrome.downloads.download({
 			url: url
 		});
@@ -108,7 +120,7 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 		} else {
 			$scope.contentExtra = 'Show more';
 			$scope.contentCss = {
-				'height': '40px'
+				'height': '32px'
 			};
 		}
 	}
@@ -116,7 +128,7 @@ angular.module('app').controller('applicationController',['$scope','$http','$mdT
 		$scope.showMovie = false;
 		$scope.contentExtra = 'Show more';
 		$scope.contentCss = {
-			'height': '40px'
+			'height': '32px'
 		};
 	}
 

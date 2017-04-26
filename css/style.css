@@ -2,6 +2,40 @@ body {
 	font-size: 12px;
     font-family: 'Roboto',sans-serif;
 }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+h4, .h4, h5, .h5, h6, .h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h1 {
+    font-size: 36px;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 24px;	
+}
+h4 {
+    font-size: 18px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 12px;	
+}
+p {
+    margin: 0 0 10px;
+}
+md-chips.md-default-theme .md-chips, md-chips .md-chips {
+    box-shadow: 0 0px #fff !important;
+}
 .main-container {
     width: 500px;
     height: 600px;
@@ -27,8 +61,19 @@ md-card.ng-hide {
 md-card.ng-hide-remove {
   animation: fadeIn 1s;
 }
+md-card:hover {
+    -ms-transition: all 200ms ease-in;
+    -moz-transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
+    -moz-transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
+.md-card-image {
+	width: 145.6px;
+}
 .banner.ng-hide-remove {
-  animation: fadeInUp 2s;
+  animation: fadeInUp 1s;
 }
 .title {
     overflow-x: hidden;
@@ -38,19 +83,11 @@ md-card.ng-hide-remove {
     text-overflow: ellipsis;
     height: 16px;
 }
-md-card:hover {
-    -ms-transition: all 300ms ease-in;
-    -moz-transition: all 300ms ease-in;
-    transition: all 300ms ease-in;
-    -moz-transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    transform: scale(1.02);
-}
 md-tabs-wrapper{ 
     position: fixed;
     top: 0px;
     left: 0px;
-    background-color: rgb(255, 255, 255) !important;
+    background-color: rgba(255, 255, 255,1) !important;
     z-index: 1000;
     width: 100%;
 }
@@ -131,7 +168,6 @@ md-tab-item:last-of-type {
 }
 .movie-container {
 	padding: 16px;
-	z-index: 2;
 	position: relative;
 }
 .banner {
@@ -143,24 +179,18 @@ md-tab-item:last-of-type {
 	height: 255px;
 	border-radius: 4px;
 }
-/*.close {
-	position: absolute;
-	top: 0;
-	left: 86%;
-	color: #fff;
-	z-index: 999;
-}*/
 ul {
 	list-style: none;
+	margin-top: 0;
 	margin-bottom: 0px !important;
 	margin-left: -40px !important;
 }
 ul > li {
 	list-style-type: none;
 	display: inline-block;
+	vertical-align: middle;
 }
 .movie-header {
-	z-index: 2;
 	position: relative;
 }
 .back {
@@ -171,6 +201,16 @@ ul > li {
 .back:focus, .back:active {
 	outline: none;
 	border: 0px solid #fff;
+}
+md-fab-speed-dial {
+    top: 10px !important;
+    right: 10px !important;
+}
+.download-fab {
+	background-color: crimson !important;
+}
+.download-action {
+	color: crimson !important;
 }
 .title-header {
 	margin-left: 10px;
@@ -212,42 +252,15 @@ ul > li {
 }
 .imdb-icon > img {
 	width: 40px;
+	border: 0;
 }
 .imdb-rating {
 	color: #000;
-	font-size: 16px;
+	font-size: 18px;
+	font-weight: 500;
 }
 .star {
-	position: relative;
-	display: inline-block;
-	width: 0;
-	height: 0;
-	margin-left: .9em;
-	margin-right: .9em;
-	margin-bottom: 1.2em;
-	border-right: .3em solid transparent;
-	border-bottom: .7em  solid #FC0;
-	border-left: .3em solid transparent;
-	/* Controlls the size of the stars. */
-	font-size: 7px;
-}
-.star:before, .star:after {
-	content: '';
-	display: block;
-	width: 0;
-	height: 0;
-	position: absolute;
-	top: .6em;
-	left: -1em;
-	border-right: 1em solid transparent;
-	border-bottom: .7em  solid #FC0;
-	border-left: 1em solid transparent;
-	-webkit-transform: rotate(-35deg);
-    transform: rotate(-35deg);
-}
-.star:after {
-  	-webkit-transform: rotate(35deg);
-	transform: rotate(35deg);
+	color: red;
 }
 .movie-summary {
 	color: #000;
@@ -262,7 +275,6 @@ ul > li {
 	cursor: pointer;
 	height: 30px;
 }
-
 .summary-content-more:active, .summary-content-more:focus {
 	cursor: pointer;
 	border: 0px solid #fff;

@@ -1,1 +1,1 @@
-var app = angular.module('app', ['ngMaterial','ngLoadingScreen','ngYoutubeEmbed'])
+var app = angular.module('app', ['ngMaterial','ngLoadingScreen'])
