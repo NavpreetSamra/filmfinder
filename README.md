@@ -10,7 +10,7 @@ Browse and Download latest movie torrents from [YTS.AG](https://www.yts.ag)
 
 This application makes use of api's powered by [YTS.AG](https://www.yts.ag/api)
 
-# Install
+# Installation
 
 **Manual**
 
