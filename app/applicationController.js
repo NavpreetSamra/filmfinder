@@ -3,7 +3,7 @@ angular.module('app')
     $scope.movies = [];
 	$scope.searchMovies = [];
     $scope.movie = [];
-    $scope.myLoadingScope = false;
+    $scope.myLoadingScope = true;
 	$scope.currentPage = 1;
 	$scope.showMovie = false;
 	$scope.contentExtra = 'Show more';
@@ -27,6 +27,7 @@ angular.module('app')
 		.action('Refresh')
 		.highlightAction(true)
 		.highlightClass('md-accent')
+		.hideDelay(3000)
 		.position('top, right');
 
     $scope.getMovies = function(type) {
@@ -39,7 +40,6 @@ angular.module('app')
 		}
 		$scope.movies = [];
 		if(navigator.onLine) {
-			$scope.myLoadingScope = true;
 			$http.get(url,$scope.config)
 			.then(function(response) {
 				$scope.currentPage = response.data.data.page_number;
@@ -56,6 +56,7 @@ angular.module('app')
 			});
 		}
 		else {
+			$scope.myLoadingScope = false;
 			$mdToast.show($scope.toast).then(function(response) {
 				if ( response == 'ok' ) {
 					$scope.getMovies(type)
@@ -93,11 +94,11 @@ angular.module('app')
 		$('.main-container').scrollTop(0)
     }
 
-	$scope.searchMovie = function() {
-		if($scope.searchInput.length != 0 && navigator.onLine) {
+	$scope.searchMovie = function(searchInput) {
+		if(searchInput.length != 0 && navigator.onLine) {
 			$scope.myLoadingScope = true;
 			$scope.searchMovies = [];
-			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+$scope.searchInput, $scope.config)
+			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+searchInput, $scope.config)
 			.then(function(response) {
 				$scope.myLoadingScope = false;
 				if(response.data.data.movie_count > 0) {
@@ -117,7 +118,7 @@ angular.module('app')
 			if(!navigator.onLine) {
 				$mdToast.show($scope.toast).then(function(response) {
 					if ( response == 'ok' ) {
-						$scope.searchMovie()
+						$scope.searchMovie(searchInput)
 					}
 				});
 			}

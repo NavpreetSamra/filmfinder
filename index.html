@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app='app'>
     <head>
-        <title>Angular Todo Chrome Extension</title>
+        <title>Angular Chrome Extension</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="lib/angular/css/angular-material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
@@ -12,7 +12,7 @@
     <body ng-controller='applicationController' ng-clock> 
         <loading-screen is-loading="myLoadingScope" src="icons/puff.svg"></loading-screen>
         <md-content class="main-container">
-            <md-tabs md-dynamic-height>
+            <md-tabs md-dynamic-height md-enable-disconnect md-border-bottom>
                 <md-tab label="Popular" md-on-select="getMovies('Popular')">
                     <md-tab-body>
                         <md-content class="md-padding top" flex layout-wrap layout="row">
@@ -49,7 +49,7 @@
                                 </div>
                             </md-toolbar>
                             <div class="movie-container">
-                                <img class="cover" ng-show="movie.large_cover_image" ng-src="{{movie.large_cover_image}}"/>
+                                <img class="cover" ng-src="{{movie.medium_cover_image}}"/>
                                 <div class="right-content">
                                     <h4 class="movie-title">{{movie.title}}</h4>
                                     <p class="movie-year">{{movie.year}}</p>
@@ -79,10 +79,7 @@
                                                 <img src="icons/imdb_icon.png">
                                             </li>
                                             <li>
-                                                <span class="imdb-rating">{{movie.rating}}</span>
-                                            </li>
-                                            <li>
-                                                <i class="material-icons red">star_rate</i>
+                                                <span class="imdb-rating">{{movie.rating}}/10</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -142,7 +139,7 @@
                                 </div>
                             </md-toolbar>
                             <div class="movie-container">
-                                <img class="cover" ng-show="movie.large_cover_image" ng-src="{{movie.large_cover_image}}"/>
+                                <img class="cover" ng-src="{{movie.medium_cover_image}}"/>
                                 <div class="right-content">
                                     <h4 class="movie-title">{{movie.title}}</h4>
                                     <p class="movie-year">{{movie.year}}</p>
@@ -173,9 +170,6 @@
                                             </li>
                                             <li>
                                                 <span class="imdb-rating">{{movie.rating}}</span>
-                                            </li>
-                                            <li>
-                                                <i class="material-icons red">star_rate</i>
                                             </li>
                                         </ul>
                                     </div>
@@ -208,7 +202,7 @@
                             <div class="search-container">
                                 <div class="searchBarMain">
                                     <i class="material-icons searchBarSearchIcon noUserSelect">search</i>
-                                    <input type="text" name="header-search" ng-model="searchInput" id="searchBarInput" placeholder="Search for a movie" ng-enter="searchMovie()">
+                                    <input type="text" name="header-search" ng-model="searchInput" id="searchBarInput" placeholder="Search for a movie" ng-enter="searchMovie(searchInput)">
                                     <md-button class="md-icon-button clearSearchBarField noUserSelect" aria-label="cancel" ng-click="searchInput = ''" ng-show="searchInput.length > 0">
                                         <md-icon class="material-icons">cancel</md-icon>
                                     </md-button>
@@ -272,7 +266,7 @@
                                 </div>
                             </md-toolbar>
                             <div class="movie-container">
-                                <img class="cover" ng-show="movie.large_cover_image" ng-src="{{movie.large_cover_image}}"/>
+                                <img class="cover" ng-src="{{movie.medium_cover_image}}"/>
                                 <div class="right-content">
                                     <h4 class="movie-title">{{movie.title}}</h4>
                                     <p class="movie-year">{{movie.year}}</p>
@@ -303,9 +297,6 @@
                                             </li>
                                             <li>
                                                 <span class="imdb-rating">{{movie.rating}}</span>
-                                            </li>
-                                            <li>
-                                                <i class="material-icons red">star_rate</i>
                                             </li>
                                         </ul>
                                     </div>
