@@ -13,3 +13,8 @@ This application makes use of api's powered by [YTS.AG](https://www.yts.ag/api)
 Install
 ====
 Download or clone this repository to your local machine and follow the instruction provided by [Chrome developer site](https://developer.chrome.com/extensions/getstarted#unpacked)
+
+Bugs and Features
+====
+If you found a bug or have a feature request, please create an issue here on GitHub.
+(https://github.com/gowthamcodingmart/yifyextension-chrome/issues)
