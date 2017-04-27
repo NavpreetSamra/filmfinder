@@ -9,10 +9,14 @@ angular.module('app')
 	$scope.contentExtra = 'Show more';
 	$scope.videoID;
 	$scope.isOpen = false;
+	$scope.myLoader = false;
 	$scope.scrollPos = 0;
 	$scope.contentCss = {
 		'height': '32px'
 	};
+	$scope.config = {
+		'timeout': '3500'
+	}
 
 	$scope.openMenu = function($mdOpenMenu, ev) {
       	$mdOpenMenu(ev);
@@ -36,12 +40,13 @@ angular.module('app')
 		$scope.movies = [];
 		if(navigator.onLine) {
 			$scope.myLoadingScope = true;
-			$http.get(url)
+			$http.get(url,$scope.config)
 			.then(function(response) {
 				$scope.currentPage = response.data.data.page_number;
 				$scope.movies = angular.copy(response.data.data.movies);
 				$scope.myLoadingScope = false;
 			}, function() {
+				$scope.myLoadingScope = false;
 				$mdToast.show(
 					$mdToast.simple()
 					.textContent('Error while fetching data.')
@@ -59,16 +64,31 @@ angular.module('app')
 		}
 	}
 
-    $scope.viewMovie = function(movie) {
+    $scope.viewMovie = function(id) {
 		$scope.showMovie = true;
+		$scope.myLoader = true;
 		$scope.contentExtra = 'Show more';
 		$scope.contentCss = {
 			'height': '32px'
 		};
 		$scope.movie = [];
-    	$scope.movie = angular.copy(movie);
-		$scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
-		$scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
+		$http.get('https://yts.ag/api/v2/movie_details.json?movie_id='+id)
+		.then(function(response) {
+			$scope.movie = angular.copy(response.data.data.movie);
+			$scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
+			$scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
+			$scope.myLoader = false;
+			if($scope.movie.runtime < 60){
+				$scope.runtime = ($scope.movie.runtime) + 'm';        
+			}
+			else if($scope.movie.runtime%60==0){
+				$scope.runtime = ($scope.movie.runtime-$scope.movie.runtime%60)/60 + 'h';        
+			}
+			else{
+				$scope.runtime = (($scope.movie.runtime-$scope.movie.runtime%60)/60 + 'h' + ' ' + $scope.movie.runtime%60 + 'm');
+			}	
+			console.log($scope.movie)
+		});
 		$scope.scrollPos = $('.main-container').scrollTop();
 		$('.main-container').scrollTop(0)
     }
@@ -77,11 +97,20 @@ angular.module('app')
 		if($scope.searchInput.length != 0 && navigator.onLine) {
 			$scope.myLoadingScope = true;
 			$scope.searchMovies = [];
-			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+$scope.searchInput)
+			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+$scope.searchInput, $scope.config)
 			.then(function(response) {
 				$scope.myLoadingScope = false;
-				if(response.data.data.movie_count > 0)
+				if(response.data.data.movie_count > 0) {
 					$scope.searchMovies = angular.copy(response.data.data.movies);
+				}
+			},function() {
+				$scope.myLoadingScope = false;
+				$mdToast.show(
+					$mdToast.simple()
+					.textContent('Error while fetching data.')
+					.position('top, right')
+					.hideDelay(2000)
+				);
 			});
 		}
 		else {

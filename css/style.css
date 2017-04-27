@@ -33,6 +33,16 @@ h6 {
 p {
     margin: 0 0 10px;
 }
+.blue {
+	color: #283593;
+}
+.red {
+	color: crimson;
+}
+.heart:hover {
+	cursor: pointer;
+	animation: pulse 1s;
+}
 md-chips.md-default-theme .md-chips, md-chips .md-chips {
     box-shadow: 0 0px #fff !important;
 }
@@ -62,6 +72,9 @@ md-card:focus, md-card:active {
 md-card.ng-hide-remove {
   animation: fadeIn 1s;
 }
+md-card.ng-hide {
+  animation: fadeOut .5s;
+}
 md-card:hover {
     -ms-transition: all 200ms ease-in;
     -moz-transition: all 200ms ease-in;
@@ -74,7 +87,13 @@ md-card:hover {
 	width: 145.6px;
 }
 .banner.ng-hide-remove {
-  animation: fadeIn 2s;
+  animation: fadeIn 3s;
+}
+.search-cards.ng-hide-remove {
+  animation: fadeIn 1s;
+}
+.search-banner.ng-hide-remove {
+	animation: fadeIn 3s;
 }
 .title {
     overflow-x: hidden;
@@ -148,16 +167,14 @@ md-tab-item:last-of-type {
 	font-family: 'Roboto', sans-serif;
 }
 
-.searchBarMain i.clearSearchBarField {
+.clearSearchBarField {
 	position: absolute;
-	right: 30px;
-	top: 30px;
+	right: 15px;
+	top: 20px;
 	color: rgba(0, 0, 0, 0.84);
-	/*display: none;*/
 	font-size: 20px;
 }
-
-.searchBarMain i.clearSearchBarField:hover {
+.clearSearchBarField:hover {
 	cursor: pointer;
 }
 .search-container {
@@ -174,6 +191,7 @@ md-tab-item:last-of-type {
 .banner {
 	width: 100%;
 	height: 100%;
+	margin-top: -17px;
 }
 .cover {
 	width: 170px;
@@ -229,17 +247,11 @@ md-fab-speed-dial {
 .movie-year {
 	color: #000;
 	font-size: 14px;
+	font-weight: 500;
 }
 .genre-content {
 	height: auto;
 	width: 100%;
-}
-.movie-genre {
-	padding: 5px;
-	border-radius: 10px;
-	margin-right: 3px;
-	color: #000;
-	background-color: rgba(0, 0 , 0 , 0.5);
 }
 .movie-torrent {
 	background-color: crimson !important;
@@ -259,9 +271,6 @@ md-fab-speed-dial {
 	color: #000;
 	font-size: 18px;
 	font-weight: 500;
-}
-.star {
-	color: crimson;
 }
 .movie-summary {
 	color: #000;
