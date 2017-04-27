@@ -43,6 +43,13 @@ p {
 	cursor: pointer;
 	animation: pulse 1s;
 }
+md-list {
+	width: 100% !important;
+}
+.md-subheader.md-default-theme, .md-subheader {
+    color: rgb(255, 64, 129);
+    background-color: inherit !important;
+}
 md-chips.md-default-theme .md-chips, md-chips .md-chips {
     box-shadow: 0 0px #fff !important;
 }
