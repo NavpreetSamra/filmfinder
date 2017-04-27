@@ -146,8 +146,7 @@ angular.module('app')
 		if($scope.contentExtra === 'Show more') {
 			$scope.contentExtra = 'Show less';
 			$scope.contentCss = {
-				'height': '100%;',
-				'transition': 'height 1s ease;'
+				'height': '100%;'
 			};
 		} else {
 			$scope.contentExtra = 'Show more';

@@ -37,7 +37,7 @@ p {
 	color: #283593;
 }
 .red {
-	color: crimson;
+	color: red;
 }
 .heart:hover {
 	cursor: pointer;
@@ -56,7 +56,7 @@ md-content.md-default-theme, md-content {
     background-color: rgba(151, 153, 155, 0) !important; 
 }
 md-chips.md-default-theme md-chip, md-chips md-chip {
-    background: crimson;
+    background: rgb(255, 64, 129);
     color: white;
 }
 .md-tab {
@@ -117,7 +117,6 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 }
 .md-tab.md-active {
     cursor: default;
-    color: crimson !important;
 }
 md-tab-item:last-of-type {
     left: 240px;
@@ -224,12 +223,6 @@ ul > li {
 md-fab-speed-dial {
     top: 10px !important;
     right: 10px !important;
-}
-.download-fab {
-	background-color: crimson !important;
-}
-.download-action {
-	color: crimson !important;
 }
 .title-header {
 	margin-left: 10px;
