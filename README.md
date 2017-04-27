@@ -17,4 +17,4 @@ Download or clone this repository to your local machine and follow the instructi
 Bugs and Features
 ====
 If you found a bug or have a feature request, please create an issue here on GitHub.
-(https://github.com/gowthamcodingmart/yifyextension-chrome/issues)
+https://github.com/gowthamcodingmart/yifyextension-chrome/issues
