@@ -12,7 +12,9 @@ This application makes use of api's powered by [YTS.AG](https://www.yts.ag/api)
 
 Install
 ====
-Download or clone this repository to your local machine and follow the instruction provided by [Chrome developer site](https://developer.chrome.com/extensions/getstarted#unpacked)
+**Manual**
+
+  - Download or clone this repository to your local machine and follow the instruction provided by [Chrome developer site]      (https://developer.chrome.com/extensions/getstarted#unpacked)
 
 Bugs and Features
 ====
