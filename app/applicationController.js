@@ -4,18 +4,17 @@ angular.module('app')
 	$scope.searchMovies = [];
     $scope.movie = [];
     $scope.myLoadingScope = false;
+	$scope.loadMovie = false;
 	$scope.currentPage = 1;
 	$scope.showMovie = false;
 	$scope.contentExtra = 'Show more';
 	$scope.videoID;
-	$scope.isOpen = false;
-	$scope.myLoader = false;
 	$scope.scrollPos = 0;
 	$scope.contentCss = {
 		'height': '32px'
 	};
 	$scope.config = {
-		'timeout': '3500'
+		'timeout': '5500'
 	}
 
 	$scope.openMenu = function($mdOpenMenu, ev) {
@@ -67,8 +66,8 @@ angular.module('app')
 	}
 
     $scope.viewMovie = function(id) {
+		$scope.loadMovie = true;		
 		$scope.showMovie = true;
-		$scope.myLoader = true;
 		$scope.contentExtra = 'Show more';
 		$scope.contentCss = {
 			'height': '32px'
@@ -76,10 +75,10 @@ angular.module('app')
 		$scope.movie = [];
 		$http.get('https://yts.ag/api/v2/movie_details.json?movie_id='+id)
 		.then(function(response) {
+			$scope.loadMovie = false;
 			$scope.movie = angular.copy(response.data.data.movie);
 			$scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
 			$scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
-			$scope.myLoader = false;
 			if($scope.movie.runtime < 60){
 				$scope.runtime = ($scope.movie.runtime) + 'm';        
 			}
@@ -90,6 +89,8 @@ angular.module('app')
 				$scope.runtime = (($scope.movie.runtime-$scope.movie.runtime%60)/60 + 'h' + ' ' + $scope.movie.runtime%60 + 'm');
 			}	
 			console.log($scope.movie)
+		},function(){
+			$scope.loadMovie = false;
 		});
 		$scope.scrollPos = $('.main-container').scrollTop();
 		$('.main-container').scrollTop(0)
@@ -102,9 +103,7 @@ angular.module('app')
 			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+searchInput, $scope.config)
 			.then(function(response) {
 				$scope.myLoadingScope = false;
-				if(response.data.data.movie_count > 0) {
-					$scope.searchMovies = angular.copy(response.data.data.movies);
-				}
+				$scope.searchMovies = angular.copy(response.data);
 			},function() {
 				$scope.myLoadingScope = false;
 				$mdToast.show(

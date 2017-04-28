@@ -94,7 +94,7 @@ md-card:hover {
 	width: 145.6px;
 }
 .banner.ng-hide-remove {
-  animation: fadeIn 3s;
+  animation: fadeIn 1s;
 }
 .search-cards.ng-hide-remove {
   animation: fadeIn 1s;

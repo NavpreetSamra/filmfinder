@@ -48,7 +48,8 @@
                                     </md-menu>
                                 </div>
                             </md-toolbar>
-                            <div class="movie-container">
+                            <md-progress-linear md-mode="indeterminate" class="md-accent" ng-disabled="!loadMovie"></md-progress-linear>
+                            <div class="movie-container" ng-hide="loadMovie">
                                 <img class="cover" ng-src="{{movie.medium_cover_image}}"/>
                                 <div class="right-content">
                                     <h4 class="movie-title">{{movie.title}}</h4>
@@ -138,7 +139,8 @@
                                     </md-menu>
                                 </div>
                             </md-toolbar>
-                            <div class="movie-container">
+                            <md-progress-linear md-mode="indeterminate" class="md-accent" ng-disabled="!loadMovie"></md-progress-linear>
+                            <div class="movie-container" ng-hide="loadMovie">
                                 <img class="cover" ng-src="{{movie.medium_cover_image}}"/>
                                 <div class="right-content">
                                     <h4 class="movie-title">{{movie.title}}</h4>
@@ -208,7 +210,7 @@
                                     </md-button>
                                     <!--<i class="material-icons clearSearchBarField noUserSelect" ng-click="searchInput = ''" ng-show="searchInput.length>0">cancel</i>-->
                                 </div>
-                                <h5 class="movie-length" ng-show="searchMovies.length > 0">{{searchMovies.length}} Movie(s) found.</h5>
+                                <h5 class="movie-length" ng-show="searchMovies.data.movie_count > -1">{{searchMovies.data.movie_count}} Movie(s) found.</h5>
                             </div>
                             <!--<md-list>
                                 <md-subheader class="md-no-sticky" ng-show="searchMovies.length > 0">{{searchMovies.length}} Movie(s) found.</md-subheader>
@@ -233,7 +235,7 @@
                                     </md-menu>
                                 </md-list-item>
                             </md-list>-->
-                            <md-card ng-repeat="movie in searchMovies track by movie.id" ng-click="viewMovie(movie.id)" flex="30">
+                            <md-card ng-repeat="movie in searchMovies.data.movies track by movie.id" ng-click="viewMovie(movie.id)" flex="30">
                                 <img ng-src="{{movie.medium_cover_image}}" class="md-card-image" alt="movie avatar">
                                 <md-card-content>
                                     <h5 class="title">{{ movie.title_english }}</h5>
@@ -265,7 +267,8 @@
                                     </md-menu>
                                 </div>
                             </md-toolbar>
-                            <div class="movie-container">
+                            <md-progress-linear md-mode="indeterminate" class="md-accent" ng-disabled="!loadMovie"></md-progress-linear>
+                            <div class="movie-container" ng-hide="loadMovie">
                                 <img class="cover" ng-src="{{movie.medium_cover_image}}"/>
                                 <div class="right-content">
                                     <h4 class="movie-title">{{movie.title}}</h4>
