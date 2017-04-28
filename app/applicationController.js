@@ -3,7 +3,7 @@ angular.module('app')
     $scope.movies = [];
 	$scope.searchMovies = [];
     $scope.movie = [];
-    $scope.myLoadingScope = true;
+    $scope.myLoadingScope = false;
 	$scope.currentPage = 1;
 	$scope.showMovie = false;
 	$scope.contentExtra = 'Show more';
@@ -40,6 +40,7 @@ angular.module('app')
 		}
 		$scope.movies = [];
 		if(navigator.onLine) {
+			$scope.myLoadingScope = true;
 			$http.get(url,$scope.config)
 			.then(function(response) {
 				$scope.currentPage = response.data.data.page_number;
