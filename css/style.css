@@ -66,9 +66,6 @@ md-chips.md-default-theme md-chip, md-chips md-chip {
     background: rgb(255, 64, 129);
     color: white;
 }
-.md-tab {
-	font-size: 12px !important;
-}
 md-card {
 	cursor: pointer;
 }
@@ -92,6 +89,7 @@ md-card:hover {
 }
 .md-card-image {
 	width: 145.6px;
+	position: relative;
 }
 .banner.ng-hide-remove {
   animation: fadeIn 1s;
@@ -126,7 +124,7 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
     cursor: default;
 }
 md-tab-item:last-of-type {
-    left: 240px;
+    left: 221px;
 }
 .searchBarMain {
 	background: #fff;
