@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name"            : "FilmFinder",
-  "description"     : "Minimal yts app for minimalist",
+  "description"     : "Browse and download YIFY movies in excellent 720p, 1080p and 3D quality from YTS.AG",
   "short_name"      : "FilmFinder",
   "version"         : "1.0",
   "browser_action": {
