@@ -41,7 +41,7 @@ p {
 }
 .heart:hover {
 	cursor: pointer;
-	animation: pulse 1s;
+	animation: flash 1s;
 }
 md-list {
 	width: 100% !important;
@@ -80,7 +80,7 @@ md-card.ng-hide-remove {
   animation: fadeIn 1s;
 }
 md-card.ng-hide {
-  animation: fadeOut .5s;
+  animation: fadeOut .6s;
 }
 md-card:hover {
     -ms-transition: all 200ms ease-in;
@@ -100,7 +100,7 @@ md-card:hover {
   animation: fadeIn 1s;
 }
 .search-banner.ng-hide-remove {
-	animation: fadeIn 3s;
+	animation: fadeIn 1s;
 }
 .title {
     overflow-x: hidden;
@@ -280,6 +280,13 @@ md-fab-speed-dial {
 	font-size: 14px;
     display: block;
 	overflow-y: hidden;
+	transition: height 75ms;
+}
+.show-less {
+	height: 32px;
+}
+.show-more {
+	height: 100%;
 }
 .summary-content-more {
 	cursor: pointer;

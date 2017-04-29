@@ -34,8 +34,7 @@
                                     <h2 flex md-truncate>Movie details</h2>
                                     <md-menu>
                                         <md-button aria-label="Open download menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu,$event)">
-                                            <md-tooltip md-direction="left">Download torrent</md-tooltip>
-                                            <md-icon class="material-icons">more_vert</md-icon>
+                                            <md-icon class="material-icons">file_download</md-icon>
                                         </md-button>
                                         <md-menu-content width="4">
                                             <md-menu-item ng-repeat="torrent in movie.torrents">
@@ -43,6 +42,19 @@
                                                 <md-icon class="material-icons">file_download</md-icon>
                                                 {{torrent.quality}} - {{torrent.size}}
                                             </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                    <md-menu>
+                                        <md-button aria-label="Open download menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu,$event)">
+                                            <md-icon class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4">
+                                            <md-menu-item>
+                                                <md-button ng-click-copy="{{movie.url}}">
+                                                    <md-icon class="material-icons">content_copy</md-icon>
+                                                    Copy url
+                                                </md-button>
                                             </md-menu-item>
                                         </md-menu-content>
                                     </md-menu>
@@ -93,7 +105,7 @@
                                 </div>-->
                                 <div class="movie-summary">
                                     <h4>Summary</h4>
-                                    <p class="summary-content" ng-style="contentCss">{{movie.description_full}}</p>
+                                    <p class="summary-content" ng-class="contentExtra == 'Show more' ? 'show-less' : 'show-more'">{{movie.description_full}}</p>
                                     <h6 class="summary-content-more" ng-click="showContent()">{{contentExtra}}</h6>
                                 </div>
                                 <div class="movie-trailer">
@@ -125,8 +137,7 @@
                                     <h2 flex md-truncate>Movie details</h2>
                                     <md-menu>
                                         <md-button aria-label="Open download menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu,$event)">
-                                            <md-tooltip md-direction="left">Download torrent</md-tooltip>
-                                            <md-icon class="material-icons">more_vert</md-icon>
+                                            <md-icon class="material-icons">file_download</md-icon>
                                         </md-button>
                                         <md-menu-content width="4">
                                             <md-menu-item ng-repeat="torrent in movie.torrents">
@@ -134,6 +145,19 @@
                                                 <md-icon class="material-icons">file_download</md-icon>
                                                 {{torrent.quality}} - {{torrent.size}}
                                             </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                    <md-menu>
+                                        <md-button aria-label="Open download menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu,$event)">
+                                            <md-icon class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4">
+                                            <md-menu-item>
+                                                <md-button ng-click-copy="{{movie.url}}">
+                                                    <md-icon class="material-icons">content_copy</md-icon>
+                                                    Copy url
+                                                </md-button>
                                             </md-menu-item>
                                         </md-menu-content>
                                     </md-menu>
@@ -184,7 +208,7 @@
                                 </div>-->
                                 <div class="movie-summary">
                                     <h4>Summary</h4>
-                                    <p class="summary-content" ng-style="contentCss">{{movie.description_full}}</p>
+                                    <p class="summary-content" ng-class="contentExtra == 'Show more' ? 'show-less' : 'show-more'">{{movie.description_full}}</p>
                                     <h6 class="summary-content-more" ng-click="showContent()">{{contentExtra}}</h6>
                                 </div>
                                 <div class="movie-trailer">
@@ -206,7 +230,7 @@
                                     <i class="material-icons searchBarSearchIcon noUserSelect">search</i>
                                     <input type="text" name="header-search" ng-model="searchInput" id="searchBarInput" placeholder="Search for a movie" ng-enter="searchMovie(searchInput)">
                                     <md-button class="md-icon-button clearSearchBarField noUserSelect" aria-label="cancel" ng-click="searchInput = ''" ng-show="searchInput.length > 0">
-                                        <md-icon class="material-icons">cancel</md-icon>
+                                        <md-icon class="material-icons">clear</md-icon>
                                     </md-button>
                                     <!--<i class="material-icons clearSearchBarField noUserSelect" ng-click="searchInput = ''" ng-show="searchInput.length>0">cancel</i>-->
                                 </div>
@@ -253,8 +277,7 @@
                                     <h2 flex md-truncate>Movie details</h2>
                                     <md-menu>
                                         <md-button aria-label="Open download menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu,$event)">
-                                            <md-tooltip md-direction="left">Download torrent</md-tooltip>
-                                            <md-icon class="material-icons">more_vert</md-icon>
+                                            <md-icon class="material-icons">file_download</md-icon>
                                         </md-button>
                                         <md-menu-content width="4">
                                             <md-menu-item ng-repeat="torrent in movie.torrents">
@@ -262,6 +285,19 @@
                                                 <md-icon class="material-icons">file_download</md-icon>
                                                 {{torrent.quality}} - {{torrent.size}}
                                             </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                    <md-menu>
+                                        <md-button aria-label="Open download menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu,$event)">
+                                            <md-icon class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="4">
+                                            <md-menu-item>
+                                                <md-button ng-click-copy="{{movie.url}}">
+                                                    <md-icon class="material-icons">content_copy</md-icon>
+                                                    Copy url
+                                                </md-button>
                                             </md-menu-item>
                                         </md-menu-content>
                                     </md-menu>
@@ -312,7 +348,7 @@
                                 </div>-->
                                 <div class="movie-summary">
                                     <h4>Summary</h4>
-                                    <p class="summary-content" ng-style="contentCss">{{movie.description_full}}</p>
+                                    <p class="summary-content" ng-class="contentExtra == 'Show more' ? 'show-less' : 'show-more'">{{movie.description_full}}</p>
                                     <h6 class="summary-content-more" ng-click="showContent()">{{contentExtra}}</h6>
                                 </div>
                                 <div class="movie-trailer">
@@ -334,6 +370,7 @@
         <script src="lib/angular/js/angular-messages.min.js"></script>
         <script src="lib/angular/js/angular-material.min.js"></script>
         <script src="lib/plugin/ng-loading-screen.js"></script>
+        <script src="lib/plugin/ngClickCopy.js"></script>        
         <script src="app/app.js"></script>
         <script src="app/directive.js"></script>
         <script src="app/applicationController.js"></script>

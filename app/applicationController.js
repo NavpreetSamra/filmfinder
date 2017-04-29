@@ -10,9 +10,6 @@ angular.module('app')
 	$scope.contentExtra = 'Show more';
 	$scope.videoID;
 	$scope.scrollPos = 0;
-	$scope.contentCss = {
-		'height': '32px'
-	};
 	$scope.config = {
 		'timeout': '5500'
 	}
@@ -69,9 +66,6 @@ angular.module('app')
 		$scope.loadMovie = true;		
 		$scope.showMovie = true;
 		$scope.contentExtra = 'Show more';
-		$scope.contentCss = {
-			'height': '32px'
-		};
 		$scope.movie = [];
 		$http.get('https://yts.ag/api/v2/movie_details.json?movie_id='+id)
 		.then(function(response) {
@@ -144,24 +138,11 @@ angular.module('app')
 	}
 
 	$scope.showContent = function() {
-		if($scope.contentExtra === 'Show more') {
-			$scope.contentExtra = 'Show less';
-			$scope.contentCss = {
-				'height': '100%;'
-			};
-		} else {
-			$scope.contentExtra = 'Show more';
-			$scope.contentCss = {
-				'height': '32px'
-			};
-		}
+		$scope.contentExtra = $scope.contentExtra === 'Show more' ? 'Show less' : 'Show more';
 	}
 	$scope.goback = function() {
 		$scope.showMovie = false;
 		$scope.contentExtra = 'Show more';
-		$scope.contentCss = {
-			'height': '32px'
-		};
 		$('.main-container').animate({
 			scrollTop: $scope.scrollPos
 		},20);
