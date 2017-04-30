@@ -82,7 +82,7 @@ angular.module('app')
 			else{
 				$scope.runtime = (($scope.movie.runtime-$scope.movie.runtime%60)/60 + 'h' + ' ' + $scope.movie.runtime%60 + 'm');
 			}	
-			console.log($scope.movie)
+			// console.log($scope.movie)
 		},function(){
 			$scope.loadMovie = false;
 		});
