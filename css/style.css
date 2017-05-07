@@ -54,7 +54,7 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
     box-shadow: 0 0px #fff !important;
 }
 .main-container {
-    width: 500px;
+    width: 510px;
     height: 600px;
 	background-color: rgba(151, 153, 155, 0.1) !important;
 }
@@ -88,7 +88,6 @@ md-card:hover {
     transform: scale(1.02);
 }
 .md-card-image {
-	width: 145.6px;
 	position: relative;
 }
 .banner.ng-hide-remove {

@@ -1,6 +1,6 @@
 # FilmFinder
 
-A chrome extension powered by [Angular.js](https://angularjs.org) and [Angular Material](https://material.angularjs.org) 
+Opera add-on powered by [Angular.js](https://angularjs.org) and [Angular Material](https://material.angularjs.org) 
 
 # Description
 

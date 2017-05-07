@@ -9,7 +9,8 @@
     "default_icon" : "images/logo.png"
   },
   "permissions": [
-    "downloads"
+    "downloads",
+    "https://yts.ag/"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'"
 }
