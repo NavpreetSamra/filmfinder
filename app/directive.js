@@ -5,7 +5,6 @@ app.directive('ngEnter', function () {
                 scope.$apply(function (){
                     scope.$eval(attrs.ngEnter);
                 });
- 
                 event.preventDefault();
             }
         });

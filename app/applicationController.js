@@ -1,9 +1,9 @@
 angular.module('app')
 .controller('applicationController',['$scope','$http','$mdToast','$location','$sce', function ($scope,$http,$mdToast,$location,$sce) {
-    $scope.movies = [];
+  	$scope.movies = [];
 	$scope.searchMovies = [];
-    $scope.movie = [];
-    $scope.myLoadingScope = false;
+  	$scope.movie = [];
+  	$scope.myLoadingScope = false;
 	$scope.loadMovie = false;
 	$scope.currentPage = 1;
 	$scope.showMovie = false;
@@ -11,7 +11,7 @@ angular.module('app')
 	$scope.videoID;
 	$scope.scrollPos = 0;
 	$scope.config = {
-		'timeout': '5500'
+		'timeout': '10000'
 	}
 
 	$scope.openMenu = function($mdOpenMenu, ev) {
