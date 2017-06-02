@@ -111,18 +111,9 @@ angular.module('app')
 	}
 
 	$scope.downloadFile = function(url, quality) {
-		downloading = browser.downloads.download({
-			url: url,
-			method: 'GET',
-			filename: ''+$scope.movie.title +' ('+$scope.movie.year+') ['+quality+'] [YTS.AG].torrent',
-			conflictAction : 'uniquify'
+    chrome.downloads.download({
+			url: url
 		});
-		downloading.then(function(id){
-		}, function() {
-		});
-    // chrome.downloads.download({
-		// 	url: url
-		// });
 	}
 
 	$scope.showContent = function() {
@@ -139,12 +130,9 @@ angular.module('app')
   }
 
   $scope.openInNewTab = function(url) {
-    var creating = browser.tabs.create({
+    chrome.tabs.create({
 			url: url
 		});
-    // chrome.tabs.create({
-		// 	url: url
-		// });
   }
 
 }]);
