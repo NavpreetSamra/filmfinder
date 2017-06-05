@@ -14,7 +14,7 @@ This application makes use of api's powered by [YTS.AG](https://www.yts.ag/api)
 
 **Manual**
 
-  - [Download](https://codeload.github.com/gowthamcodingmart/yifyextension-chrome/zip/master) or clone this repository to your local machine and follow the instruction provided by [Chrome developer site](https://developer.mozilla.org/en-US/Add-ons/Add-on_Debugger)
+  - [Download](https://codeload.github.com/gowthamcodingmart/FilmFinder/zip/master) or clone this repository to your local machine and follow the instruction provided by [Chrome developer site]   (https://developer.chrome.com/extensions/getstarted#unpacked)
 
 # Bugs and Features
 
