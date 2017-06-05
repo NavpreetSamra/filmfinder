@@ -40,10 +40,10 @@
             </button>
           </div>
           <div class="mdl-grid" ng-show="!networkError">
-            <div id="{{movie.id}}"class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in movies" ng-style="{'background-image':'url({{movie.medium_cover_image}})'}">
+            <div id="{{movie.id}}"class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in movies" ng-style="{'background-image':'url({{movie.medium_cover_image | cleanDom}})'}">
               <div class="mdl-card__title mdl-card--expand" ></div>
               <div class="mdl-card__supporting-text">
-                {{movie.title_long}}
+                {{movie.title_long | cleanDom}}
               </div>
             </div>
           </div>
@@ -59,10 +59,10 @@
             </button>
           </div>
           <div class="mdl-grid" ng-show="!networkError">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in movies" ng-style="{'background-image':'url({{movie.medium_cover_image}})'}">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in movies" ng-style="{'background-image':'url({{movie.medium_cover_image | cleanDom}})'}">
               <div class="mdl-card__title mdl-card--expand"></div>
               <div class="mdl-card__supporting-text">
-                {{movie.title_long}}
+                {{movie.title_long | cleanDom}}
               </div>
             </div>
           </div>
@@ -80,10 +80,10 @@
             <h5 class="movie-length" ng-show="searchMovies.data.movie_count > -1">{{searchMovies.data.movie_count}} Movie(s) found.</h5>
           </div>
           <div class="mdl-grid">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in searchMovies.data.movies" ng-style="{'background-image':'url({{movie.medium_cover_image}})'}">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in searchMovies.data.movies" ng-style="{'background-image':'url({{movie.medium_cover_image | cleanDom}})'}">
               <div class="mdl-card__title mdl-card--expand" ></div>
               <div class="mdl-card__supporting-text">
-                {{movie.title_long}}
+                {{movie.title_long | cleanDom}}
               </div>
             </div>
           </div>
@@ -128,15 +128,15 @@
         <div class="inner-container">
           <img class="cover" ng-src="{{movie.medium_cover_image}}" ng-show="!startSearch">
           <div class="right-content" ng-show="!startSearch">
-              <h4 class="movie-title">{{movie.title}}</h4>
-              <p class="movie-year">{{movie.year}}</p>
+              <h4 class="movie-title">{{movie.title | cleanDom}}</h4>
+              <p class="movie-year">{{movie.year | cleanDom}}</p>
               <div class="movie-rating">
                 <ul>
                   <li class="imdb-icon">
                     <i class="material-icons blue">access_time</i>
                   </li>
                   <li>
-                    <span class="imdb-rating">{{runtime}}</span>
+                    <span class="imdb-rating">{{runtime | cleanDom}}</span>
                   </li>
                 </ul>
               </div>
@@ -146,7 +146,7 @@
                     <i class="material-icons red heart">favorite</i>
                   </li>
                   <li>
-                    <span class="imdb-rating">{{movie.like_count}} {{movie.like_count > 1 ? 'Likes' : 'Like'}}</span>
+                    <span class="imdb-rating">{{movie.like_count | cleanDom}} Like(s)</span>
                   </li>
                 </ul>
               </div>
@@ -156,14 +156,14 @@
                     <img src="images/imdb_icon.png">
                   </li>
                   <li>
-                    <span class="imdb-rating">{{movie.rating}}/10</span>
+                    <span class="imdb-rating">{{movie.rating | cleanDom}}/10</span>
                   </li>
                 </ul>
               </div>
             </div>
           <div class="movie-summary" ng-show="!startSearch">
             <h4>Summary</h4>
-            <p class="summary-content" ng-class="contentExtra == 'Show more' ? 'show-less' : 'show-more'">{{movie.description_full}}</p>
+            <p class="summary-content" ng-class="contentExtra == 'Show more' ? 'show-less' : 'show-more'">{{movie.description_full | cleanDom}}</p>
             <h6 class="summary-content-more" ng-click="showContent()">{{contentExtra}}</h6>
           </div>
           <div class="movie-trailer" ng-show="!startSearch">
@@ -214,5 +214,6 @@
     <script src="app/app.js"></script>
     <script src="app/applicationController.js"></script>
     <script src="app/directive.js"></script>
+    <script src="lib/safeResponse.js"></script>
   </body>
 </html>

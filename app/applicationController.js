@@ -85,6 +85,10 @@ angular.module('app')
 			$scope.searchMovies = [];
 			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+searchInput, $scope.config)
 			.then(function(response) {
+        response["headers"] = response["config"] = response["statusText"] =  null;
+        delete response["headers"];
+        delete response["config"];
+        delete response["statusText"];
         $scope.startSearch = false;
 				$scope.searchMovies = angular.copy(response.data);
 			},function() {
