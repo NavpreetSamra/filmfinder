@@ -75,7 +75,7 @@ angular.module('app')
 				$scope.runtime = (($scope.movie.runtime-$scope.movie.runtime%60)/60 + 'h' + ' ' + $scope.movie.runtime%60 + 'm');
 			}
 		},function(){
-			$scope.startSearch = true;
+			$scope.startSearch = false;
 		});
   }
 
