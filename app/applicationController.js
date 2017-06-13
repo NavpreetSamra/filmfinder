@@ -55,6 +55,7 @@ angular.module('app')
 	$scope.getMovies('Popular');
 
   $scope.viewMovie = function(id) {
+    $scope.toTop();
 		$scope.showMovie = true;
     $scope.startSearch = true;
 		$scope.contentExtra = 'Show more';
@@ -63,19 +64,13 @@ angular.module('app')
 		.then(function(response) {
       $scope.startSearch = false;
 			$scope.movie = angular.copy(response.data.data.movie);
-			$scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
+      $scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
 			$scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
-			if($scope.movie.runtime < 60){
-				$scope.runtime = ($scope.movie.runtime) + 'm';
-			}
-			else if($scope.movie.runtime%60==0){
-				$scope.runtime = ($scope.movie.runtime-$scope.movie.runtime%60)/60 + 'h';
-			}
-			else{
-				$scope.runtime = (($scope.movie.runtime-$scope.movie.runtime%60)/60 + 'h' + ' ' + $scope.movie.runtime%60 + 'm');
-			}
 		},function(){
 			$scope.startSearch = false;
+      $scope.movie = $scope.movies.find(function(movie) { return movie.id == id})
+      $scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
+      $scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
 		});
   }
 
@@ -123,6 +118,7 @@ angular.module('app')
 	$scope.showContent = function() {
 		$scope.contentExtra = $scope.contentExtra === 'Show more' ? 'Show less' : 'Show more';
 	}
+
 	$scope.goback = function() {
 		$scope.showMovie = false;
 		$scope.contentExtra = 'Show more';

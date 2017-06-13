@@ -41,7 +41,7 @@
           </div>
           <div class="mdl-grid" ng-show="!networkError">
             <div id="{{movie.id}}"class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in movies" ng-style="{'background-image':'url({{movie.medium_cover_image | cleanDom}})'}">
-              <div class="mdl-card__title mdl-card--expand" ></div>
+              <div class="mdl-card__title mdl-card--expand"></div>
               <div class="mdl-card__supporting-text">
                 {{movie.title_long | cleanDom}}
               </div>
@@ -136,16 +136,16 @@
                     <i class="material-icons blue">access_time</i>
                   </li>
                   <li>
-                    <span class="imdb-rating">{{runtime | cleanDom}}</span>
+                    <span class="imdb-rating">{{(movie.runtime | cleanDom) | runTime}}</span>
                   </li>
                 </ul>
               </div>
               <div class="movie-rating">
                 <ul>
-                  <li class="imdb-icon">
+                  <li class="imdb-icon" ng-if="movie.like_count">
                     <i class="material-icons red heart">favorite</i>
                   </li>
-                  <li>
+                  <li ng-if="movie.like_count">
                     <span class="imdb-rating">{{movie.like_count | cleanDom}} Like(s)</span>
                   </li>
                 </ul>
@@ -156,7 +156,7 @@
                     <img src="images/imdb_icon.png">
                   </li>
                   <li>
-                    <span class="imdb-rating">{{movie.rating | cleanDom}}/10</span>
+                    <span class="imdb-rating">{{movie.rating | cleanDom}}</span>
                   </li>
                 </ul>
               </div>
@@ -195,8 +195,8 @@
       </ul>
       <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
           data-mdl-for="about">
-        <li class="mdl-menu__item">FilmFinder - 0.1</li>
-        <li class="mdl-menu__item">Rate & Review  </li>
+        <li class="mdl-menu__item">FilmFinder - 0.5</li>
+        <li class="mdl-menu__item" ng-click="openInNewTab('https://addons.opera.com/en/extensions/details/filmfinder/')">Rate & Review</li>
         <li class="mdl-menu__item" ng-click="openInNewTab('https://github.com/gowthamcodingmart/yifyextension-chrome')">View on Github</li>
       </ul>
       <!-- <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"

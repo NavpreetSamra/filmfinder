@@ -48,7 +48,7 @@ p {
 }
 .heart:hover {
 	cursor: pointer;
-	animation: flash 1s;
+	animation: beat .25s infinite alternate;
 }
 .banner.ng-hide-remove {
   animation: fadeInLeft 1s;
@@ -228,16 +228,30 @@ p {
 }
 .mdl-card {
 	min-height: 225px;
-	background-position: center;
+	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: 100% 100%;
 	z-index: 0 !important;
 	cursor: pointer;
+}
+.demo-card-image:hover {
+	background-size: 110% 110%;
+}
+.demo-card-image:hover > .mdl-card__supporting-text {
+  color: #fff;
+  background-color: rgba(0,0,0,0.8);
 }
 .demo-card-image > .mdl-card__actions {
 	height: 52px;
 	padding: 16px;
 	background: rgba(0, 0, 0, 0.2);
+}
+.demo-card-image {
+	transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
 }
 .demo-card-image__filename {
 	color: #fff;
@@ -340,6 +354,7 @@ p {
 .inner-container {
 	padding: 16px;
 	padding-top: 75px;
+	min-height: 500px;
 }
 .mdl-progress>.progressbar {
   background-color: rgb(255,82,82) !important;
@@ -383,4 +398,13 @@ p {
 .icon-big {
 	font-size: 50px;
 	color: rgb(255,82,82);
+}
+.mdl-menu__item > span {
+	padding: 4px;
+	margin-top: 4px;
+}
+
+/* Animation key frames*/
+@keyframes beat{
+	to { transform: scale(1.3); }
 }
