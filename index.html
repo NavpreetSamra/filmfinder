@@ -101,6 +101,7 @@
           </div>
         </div>
       </div>
+
       <!-- Details page -->
       <div class="movie-container" ng-show="showMovie">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
@@ -199,7 +200,7 @@
           for="more">
         <li class="mdl-menu__item" ng-click-copy="{{movie.url}}">Copy URL</li>
         <li class="mdl-menu__item" ng-click="openInNewTab(movie.url)">Open in new tab</li>
-
+        <li class="mdl-menu__item" ng-click="openInNewTab('https://www.imdb.com/title/'+movie.imdb_code)">View in IMDB</li>
       </ul>
       <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
           for="download">
