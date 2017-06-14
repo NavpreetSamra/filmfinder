@@ -9,7 +9,7 @@
     "default_icon" : "logo/icon.png"
   },
   "permissions": [
-    "downloads","webRequest","https://yts.ag/", "tabs", "clipboardRead", "clipboardWrite"
+    "downloads","https://yts.ag/", "clipboardRead", "clipboardWrite"
   ],
   "icons": {
     "16": "logo/logo@16.png",
