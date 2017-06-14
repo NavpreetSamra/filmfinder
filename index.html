@@ -47,7 +47,7 @@
               </div>
             </div>
             <div class="load-more">
-              <button class="mdl-button mdl-js-button mdl-button--primary" ng-disabled="addMore" ng-hide="myLoadingScope" ng-click="loadMore('Popular')">
+              <button class="mdl-button mdl-js-button mdl-button--primary" ng-disabled="addMore" ng-hide="myLoadingScope || popularMovies.length == 0" ng-click="loadMore('Popular')">
                 <span ng-show="addMore" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></span>
                 <label ng-hide="addMore">Load more</label>
               </button>
@@ -72,7 +72,7 @@
               </div>
             </div>
             <div class="load-more">
-              <button class="mdl-button mdl-js-button mdl-button--primary" ng-disabled="addMore" ng-hide="myLoadingScope" ng-click="loadMore('Latest')">
+              <button class="mdl-button mdl-js-button mdl-button--primary" ng-disabled="addMore" ng-hide="myLoadingScope || latestMovies.length == 0" ng-click="loadMore('Latest')">
                 <span ng-show="addMore" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></span>
                 <label ng-hide="addMore">Load more</label>
               </button>
