@@ -1,54 +1,62 @@
 angular.module('app')
 .controller('applicationController',['$scope','$http','$location','$sce', "$timeout", "$anchorScroll", function ($scope, $http, $location, $sce, $timeout, $anchorScroll) {
-  $scope.movies = [];
 	$scope.searchMovies = [];
-  $scope.movie = [];
+	$scope.popularMovies = [];
+	$scope.latestMovies = [];
   $scope.myLoadingScope = false;
 	$scope.showMovie = false;
   $scope.networkError = false;
   $scope.startSearch = false;
+	$scope.addMore = false;
   $scope.currentPage = 1;
 	$scope.contentExtra = 'Show more';
 	$scope.videoID;
 	$scope.config = {
 		'timeout': '5500'
 	}
+  $scope.selectedTab = 'Popular'
 
   $scope.getMovies = function(type) {
     $location.hash('main');
     $anchorScroll();
 		$scope.showMovie = $scope.networkError = false;
-		url='';
-		if(type === 'Popular') {
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count'
-		} else {
-			url='https://yts.ag/api/v2/list_movies.json?limit=21'
-		}
-		$scope.movies = [];
-		if(navigator.onLine) {
-			$scope.myLoadingScope = true;
-			$http.get(url,$scope.config)
-			.then(function(response) {
-        $scope.myLoadingScope = false;
-        $timeout(function () {
-          response["headers"] = response["config"] = response["statusText"] =  null;
-          delete response["headers"];
-          delete response["config"];
-          delete response["statusText"];
-          $scope.currentPage = response.data.data.page_number;
-  				$scope.movies = angular.copy(response.data.data.movies);
-        }, 500)
-			}, function() {
-        $scope.myLoadingScope = false;
-        $timeout(function () {
-          $scope.networkError = true;
-        }, 500);
-			});
-		}
-		else {
-			$scope.myLoadingScope = false;
-      $scope.networkError = true;
-      $scope.error = 'No network found.'
+		if($scope.popularMovies.length == 0 || $scope.latestMovies.length == 0) {
+			url='';
+			if(type === 'Popular') {
+	      $scope.selectedTab = 'Popular'
+				url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count'
+			} else {
+	      $scope.selectedTab = 'Latest'
+				url='https://yts.ag/api/v2/list_movies.json?limit=21'
+			}
+			if(navigator.onLine) {
+				$scope.myLoadingScope = true;
+				$http.get(url,$scope.config)
+				.then(function(response) {
+	        $scope.myLoadingScope = false;
+	        $timeout(function () {
+	          response["headers"] = response["config"] = response["statusText"] =  null;
+	          delete response["headers"];
+	          delete response["config"];
+	          delete response["statusText"];
+	          $scope.currentPage = response.data.data.page_number;
+	          if(type === 'Popular')
+	            $scope.popularMovies = angular.copy(response.data.data.movies);
+	          else
+	            $scope.latestMovies = angular.copy(response.data.data.movies);
+	  				$scope.movies = angular.copy(response.data.data.movies);
+	        }, 500)
+				}, function() {
+	        $scope.myLoadingScope = false;
+	        $timeout(function () {
+	          $scope.networkError = true;
+	        }, 500);
+				});
+			}
+			else {
+				$scope.myLoadingScope = false;
+	      $scope.networkError = true;
+			}
 		}
 	}
 
@@ -68,7 +76,10 @@ angular.module('app')
 			$scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
 		},function(){
 			$scope.startSearch = false;
-      $scope.movie = $scope.movies.find(function(movie) { return movie.id == id})
+      if($scope.selectedTab == 'Popular')
+        $scope.movie = $scope.popularMovies.find(function(movie) { return movie.id == id})
+      else
+        $scope.movie = $scope.latestMovies.find(function(movie) { return movie.id == id})
       $scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
       $scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
 		});
@@ -98,14 +109,29 @@ angular.module('app')
 	}
 
 	$scope.loadMore = function(type) {
-		$scope.myLoadingScope = true;
-		$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count&page='+($scope.currentPage+1))
+		$scope.addMore = true;
+		url='';
+		if(type === 'Popular') {
+      $scope.selectedTab = 'Popular'
+			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count&page='+($scope.currentPage+1)
+		} else {
+      $scope.selectedTab = 'Latest'
+			url='https://yts.ag/api/v2/list_movies.json?limit=21&page='+($scope.currentPage+1)
+		}
+		$http.get(url)
 		.then(function(response) {
 			$scope.currentPage = response.data.data.page_number;
+			response["headers"] = response["config"] = response["statusText"] =  null;
+			delete response["headers"];
+			delete response["config"];
+			delete response["statusText"];
 			response.data.data.movies.forEach(function(element) {
-				$scope.movies.push(element)
+				if(type === 'Popular')
+					$scope.popularMovies.push(element)
+				else
+					$scope.latestMovies.push(element)
 			});
-			$scope.myLoadingScope = false;
+			$scope.addMore = false;
 		});
 	}
 

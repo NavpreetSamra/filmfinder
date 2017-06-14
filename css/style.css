@@ -403,6 +403,21 @@ p {
 	padding: 4px;
 	margin-top: 4px;
 }
+.mdl-button > span {
+	vertical-align: middle;
+}
+.load-more {
+	width: 100%;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+ 	align-items: center;
+}
 
 /* Animation key frames*/
 @keyframes beat{
