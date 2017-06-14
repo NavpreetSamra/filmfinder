@@ -40,7 +40,7 @@
             </button>
           </div>
           <div class="mdl-grid" ng-show="!networkError">
-            <div id="{{movie.id}}"class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in popularMovies" ng-style="{'background-image':'url({{movie.medium_cover_image | cleanDom}})'}">
+            <div id="{{movie.id}}" class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in popularMovies" ng-style="{'background-image':'url({{movie.medium_cover_image | cleanDom}})'}">
               <div class="mdl-card__title mdl-card--expand"></div>
               <div class="mdl-card__supporting-text">
                 {{movie.title_long | cleanDom}}
@@ -65,7 +65,7 @@
             </button>
           </div>
           <div class="mdl-grid" ng-show="!networkError">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in latestMovies" ng-style="{'background-image':'url({{movie.medium_cover_image | cleanDom}})'}">
+            <div id="{{movie.id}}" class="demo-card-image mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" ng-click="viewMovie(movie.id)" ng-repeat="movie in latestMovies" ng-style="{'background-image':'url({{movie.medium_cover_image | cleanDom}})'}">
               <div class="mdl-card__title mdl-card--expand"></div>
               <div class="mdl-card__supporting-text">
                 {{movie.title_long | cleanDom}}

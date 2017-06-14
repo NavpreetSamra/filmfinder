@@ -83,6 +83,7 @@ angular.module('app')
       $scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
       $scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
 		});
+		$location.hash(id);
   }
 
 	$scope.searchMovie = function(searchInput) {
@@ -148,6 +149,9 @@ angular.module('app')
 	$scope.goback = function() {
 		$scope.showMovie = false;
 		$scope.contentExtra = 'Show more';
+		$timeout(function() {
+			$anchorScroll();
+		});
 	}
 
   $scope.toTop = function() {
