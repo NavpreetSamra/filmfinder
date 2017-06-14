@@ -8,7 +8,8 @@ angular.module('app')
   $scope.networkError = false;
   $scope.startSearch = false;
 	$scope.addMore = false;
-  $scope.currentPage = 1;
+  $scope.popularPage = 1;
+	$scope.latestPage = 1;
 	$scope.contentExtra = 'Show more';
 	$scope.videoID;
 	$scope.config = {
@@ -39,11 +40,14 @@ angular.module('app')
 	          delete response["headers"];
 	          delete response["config"];
 	          delete response["statusText"];
-	          $scope.currentPage = response.data.data.page_number;
-	          if(type === 'Popular')
+	          if(type === 'Popular') {
+							$scope.popularPage = response.data.data.page_number;
 	            $scope.popularMovies = angular.copy(response.data.data.movies);
-	          else
+						}
+	          else {
+							$scope.latestPage = response.data.data.page_number;
 	            $scope.latestMovies = angular.copy(response.data.data.movies);
+						}
 	  				$scope.movies = angular.copy(response.data.data.movies);
 	        }, 500)
 				}, function() {
@@ -104,7 +108,7 @@ angular.module('app')
 		}
 		else {
 			if(!navigator.onLine) {
-				console.log("toast")
+				console.log("No network")
 			}
 		}
 	}
@@ -114,24 +118,28 @@ angular.module('app')
 		url='';
 		if(type === 'Popular') {
       $scope.selectedTab = 'Popular'
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count&page='+($scope.currentPage+1)
+			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count&page='+($scope.popularPage+1)
 		} else {
       $scope.selectedTab = 'Latest'
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&page='+($scope.currentPage+1)
+			url='https://yts.ag/api/v2/list_movies.json?limit=21&page='+($scope.latestPage+1)
 		}
 		$http.get(url)
 		.then(function(response) {
-			$scope.currentPage = response.data.data.page_number;
 			response["headers"] = response["config"] = response["statusText"] =  null;
 			delete response["headers"];
 			delete response["config"];
 			delete response["statusText"];
 			response.data.data.movies.forEach(function(element) {
-				if(type === 'Popular')
+				if(type === 'Popular') {
+					$scope.popularPage = response.data.data.page_number;
 					$scope.popularMovies.push(element)
-				else
+				} else {
+					$scope.latestPage = response.data.data.page_number;
 					$scope.latestMovies.push(element)
+				}
 			});
+			$scope.addMore = false;
+		}, function() {
 			$scope.addMore = false;
 		});
 	}
