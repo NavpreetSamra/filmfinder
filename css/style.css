@@ -337,6 +337,9 @@ p {
 .mdl-mini-footer--social-btn:hover, .mdl-mini-footer__social-btn:hover {
 	color: rgb(255,82,82);
 }
+.mdl-mini-footer--social-btn:hover, .mdl-mini-footer__social-btn:focus {
+	outline: none;
+}
 .mdl-menu__container.is-visible, .mdl-menu__container.is-animating {
   z-index: 1002;
   visibility: visible;
