@@ -21,16 +21,16 @@ angular.module('app')
     $location.hash('main');
     $anchorScroll();
 		$scope.showMovie = $scope.networkError = false;
-		if($scope.popularMovies.length == 0 || $scope.latestMovies.length == 0) {
-			url='';
-			if(type === 'Popular') {
-	      $scope.selectedTab = 'Popular'
-				url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count'
-			} else {
-	      $scope.selectedTab = 'Latest'
-				url='https://yts.ag/api/v2/list_movies.json?limit=21'
-			}
-			if(navigator.onLine) {
+		url='';
+		if(type === 'Popular') {
+      $scope.selectedTab = 'Popular'
+			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count'
+		} else {
+      $scope.selectedTab = 'Latest'
+			url='https://yts.ag/api/v2/list_movies.json?limit=21'
+		}
+		if(navigator.onLine) {
+			if(($scope.popularMovies.length == 0 && type === 'Popular') || ($scope.latestMovies.length == 0 && type === 'Latest')) {
 				$scope.myLoadingScope = true;
 				$http.get(url,$scope.config)
 				.then(function(response) {
@@ -57,10 +57,10 @@ angular.module('app')
 	        }, 500);
 				});
 			}
-			else {
-				$scope.myLoadingScope = false;
-	      $scope.networkError = true;
-			}
+		}
+		else {
+			$scope.myLoadingScope = false;
+      $scope.networkError = true;
 		}
 	}
 
