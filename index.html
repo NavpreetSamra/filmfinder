@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="lib/material/material.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-  <body ng-controller='applicationController' ng-clock>
+  <body ng-controller='applicationController' ng-cloak>
     <loading-screen is-loading="myLoadingScope" src="images/oval.svg"></loading-screen>
 
     <!--- New Layout -->
@@ -17,15 +17,15 @@
         <div class="mdl-tabs__tab-bar">
           <a href="#popular-panel" class="mdl-tabs__tab is-active" ng-click="getMovies('Popular')">
             <i class="material-icons">favorite</i>
-            <span>Popular</span>
+            <span class="tab">Popular</span>
           </a>
           <a href="#latest-panel" class="mdl-tabs__tab" ng-click="getMovies('Latest')">
             <i class="material-icons">new_releases</i>
-            <span>Latest</span>
+            <span class="tab">Latest</span>
           </a>
           <a href="#search-panel" class="mdl-tabs__tab">
             <i class="material-icons">search</i>
-            <span>Search</span>
+            <span class="tab">Search</span>
           </a>
         </div>
 
@@ -35,7 +35,7 @@
             <h5 class="error-text">
               Oops! Couldn't connect to the server. Please check your internet connection.
             </h5>
-            <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect" ng-click="getMovies('Popular')">
+            <button id="refresh" class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect" ng-click="getMovies('Popular')">
               Refresh
             </button>
           </div>
@@ -47,7 +47,7 @@
               </div>
             </div>
             <div class="load-more">
-              <button class="mdl-button mdl-js-button mdl-button--primary" ng-disabled="addMore" ng-hide="myLoadingScope || popularMovies.length == 0" ng-click="loadMore('Popular')">
+              <button id="load_more" class="mdl-button mdl-js-button mdl-button--primary" ng-disabled="addMore" ng-hide="myLoadingScope || popularMovies.length == 0" ng-click="loadMore('Popular')">
                 <span ng-show="addMore" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></span>
                 <label ng-hide="addMore">Load more</label>
               </button>
@@ -60,7 +60,7 @@
             <h5 class="error-text">
               Oops! Couldn't connect to the server. Please check your internet connection.
             </h5>
-            <button class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect" ng-click="getMovies('Latest')">
+            <button id="refresh_latest" class="mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect" ng-click="getMovies('Latest')">
               Refresh
             </button>
           </div>
@@ -72,7 +72,7 @@
               </div>
             </div>
             <div class="load-more">
-              <button class="mdl-button mdl-js-button mdl-button--primary" ng-disabled="addMore" ng-hide="myLoadingScope || latestMovies.length == 0" ng-click="loadMore('Latest')">
+              <button id="load_popular" class="mdl-button mdl-js-button mdl-button--primary" ng-disabled="addMore" ng-hide="myLoadingScope || latestMovies.length == 0" ng-click="loadMore('Latest')">
                 <span ng-show="addMore" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></span>
                 <label ng-hide="addMore">Load more</label>
               </button>
@@ -115,17 +115,17 @@
               <div class="mdl-layout-spacer"></div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                           mdl-textfield--floating-label mdl-textfield--align-right">
-                <label class="mdl-button mdl-js-button mdl-button--icon" id="download">
+                <button class="mdl-button mdl-js-button mdl-button--icon" id="download">
                   <i class="material-icons">file_download</i>
-                </label>
+                </button>
                 <div class="mdl-textfield__expandable-holder">
                 </div>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                           mdl-textfield--floating-label mdl-textfield--align-right">
-                <label class="mdl-button mdl-js-button mdl-button--icon" id="more">
+                <button class="mdl-button mdl-js-button mdl-button--icon" id="more">
                   <i class="material-icons">more_vert</i>
-                </label>
+                </button>
                 <div class="mdl-textfield__expandable-holder">
                 </div>
               </div>
@@ -189,7 +189,7 @@
       <!-- Footer -->
       <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__right-section">
-          <button class="mdl-mini-footer__social-btn" ng-click="toTop()"><i class="material-icons">vertical_align_top</i></button>
+          <button id="to_top" class="mdl-mini-footer__social-btn" ng-click="toTop()"><i class="material-icons">vertical_align_top</i></button>
           <button class="mdl-mini-footer__social-btn" id="about"><i class="material-icons">info</i></button>
           <!-- <button class="mdl-mini-footer__social-btn" id="settings"><i class="material-icons">settings</i></button> -->
         </div>
@@ -228,6 +228,7 @@
     <script src="app/applicationController.js"></script>
     <script src="app/directive.js"></script>
     <script src="app/filter.js"></script>
+    <script src="app/analytics.js"></script>
     <script src="lib/safeResponse.js"></script>
   </body>
 </html>
