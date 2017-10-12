@@ -3,18 +3,18 @@
   "name"            : "FilmFinder",
   "description"     : "Browse and download YIFY movies in excellent 720p, 1080p and 3D quality from YTS.AG",
   "short_name"      : "FilmFinder",
-  "version"         : "0.8",
+  "version"         : "0.9",
   "browser_action": {
     "default_popup": "index.html",
-    "default_icon" : "logo/icon.png"
+    "default_icon" : "images/logo/icon.png"
   },
   "permissions": [
     "downloads","https://yts.ag/", "clipboardRead", "clipboardWrite"
   ],
   "icons": {
-    "16": "logo/logo@16.png",
-    "48": "logo/logo@48.png",
-    "128": "logo/logo@128.png"
+    "16": "images/logo/logo@16.png",
+    "48": "images/logo/logo@48.png",
+    "128": "images/logo/logo@128.png"
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
