@@ -15,7 +15,7 @@ angular.module('app')
 	$scope.config = {
 		'timeout': '5500'
 	}
-  $scope.selectedTab = 'Popular'
+  $scope.selectedTab = 'Latest'
 
   $scope.getMovies = function(type) {
     $location.hash('main');
@@ -64,7 +64,7 @@ angular.module('app')
 		}
 	}
 
-	$scope.getMovies('Popular');
+	$scope.getMovies('Latest');
 
   $scope.viewMovie = function(id) {
     $scope.toTop();

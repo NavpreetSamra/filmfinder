@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="lib/material/material.min.css">
+    <link rel="stylesheet" type="text/css" href="css/material/material.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body ng-controller='applicationController' ng-cloak>
@@ -15,11 +15,11 @@
     <div class="main-container" id="main">
       <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" ng-hide="showMovie">
         <div class="mdl-tabs__tab-bar">
-          <a href="#popular-panel" class="mdl-tabs__tab is-active" ng-click="getMovies('Popular')">
+          <a href="#popular-panel" class="mdl-tabs__tab" ng-click="getMovies('Popular')">
             <i class="material-icons">favorite</i>
             <span class="tab">Popular</span>
           </a>
-          <a href="#latest-panel" class="mdl-tabs__tab" ng-click="getMovies('Latest')">
+          <a href="#latest-panel" class="mdl-tabs__tab is-active" ng-click="getMovies('Latest')">
             <i class="material-icons">new_releases</i>
             <span class="tab">Latest</span>
           </a>
@@ -29,7 +29,7 @@
           </a>
         </div>
 
-        <div class="mdl-tabs__panel is-active" id="popular-panel">
+        <div class="mdl-tabs__panel" id="popular-panel">
           <div class="network-error" ng-show="networkError">
             <i class="material-icons icon-big">sentiment_very_dissatisfied</i>
             <h5 class="error-text">
@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div class="mdl-tabs__panel" id="latest-panel">
+        <div class="mdl-tabs__panel is-active" id="latest-panel">
           <div class="network-error" ng-show="networkError">
             <i class="material-icons icon-big">sentiment_very_dissatisfied</i>
             <h5 class="error-text">
@@ -204,7 +204,7 @@
       </ul>
       <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
           data-mdl-for="about">
-        <li class="mdl-menu__item">FilmFinder - 0.6</li>
+        <li class="mdl-menu__item">FilmFinder - 0.9</li>
         <li class="mdl-menu__item" ng-click="openInNewTab('https://addons.opera.com/en/extensions/details/filmfinder/')">Rate & Review</li>
         <li class="mdl-menu__item" ng-click="openInNewTab('https://github.com/gowthamcodingmart/FilmFinder')">View on Github</li>
       </ul>
@@ -215,11 +215,11 @@
     <script src="js/material/material.min.js"></script>
     <script src="js/plugin/ng-loading-screen.js"></script>
     <script src="js/plugin/ngClickCopy.js"></script>
-    <script src="src/app.js"></script>
-    <script src="src/applicationController.js"></script>
-    <script src="src/directive.js"></script>
-    <script src="src/filter.js"></script>
-    <script src="plugin/analytics.js"></script>
-    <script src="plugin/safeResponse.js"></script>
+    <script src="js/src/app.js"></script>
+    <script src="js/src/applicationController.js"></script>
+    <script src="js/src/directive.js"></script>
+    <script src="js/src/filter.js"></script>
+    <script src="js/plugin/analytics.js"></script>
+    <script src="js/plugin/safeResponse.js"></script>
   </body>
 </html>
