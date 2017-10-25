@@ -76,16 +76,14 @@ angular.module('app')
 		.then(function(response) {
       $scope.startSearch = false;
 			$scope.movie = angular.copy(response.data.data.movie);
-      $scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
-			$scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
+      $scope.videoID = $sce.trustAsResourceUrl('https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code);
 		},function(){
 			$scope.startSearch = false;
       if($scope.selectedTab == 'Popular')
         $scope.movie = $scope.popularMovies.find(function(movie) { return movie.id == id})
       else
         $scope.movie = $scope.latestMovies.find(function(movie) { return movie.id == id})
-      $scope.videoID = 'https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code;
-      $scope.videoID = $sce.trustAsResourceUrl($scope.videoID);
+      $scope.videoID = $sce.trustAsResourceUrl('https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code);
 		});
 		$location.hash(id);
   }
@@ -96,12 +94,9 @@ angular.module('app')
 			$scope.searchMovies = [];
 			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+searchInput, $scope.config)
 			.then(function(response) {
-        response["headers"] = response["config"] = response["statusText"] =  null;
-        delete response["headers"];
-        delete response["config"];
-        delete response["statusText"];
+        newResponse = angular.copy($scope.deleteResponseHeaders(response))
         $scope.startSearch = false;
-				$scope.searchMovies = angular.copy(response.data);
+				$scope.searchMovies = angular.copy(newResponse.data);
 			},function() {
         $scope.startSearch = false;
 			});
@@ -125,11 +120,8 @@ angular.module('app')
 		}
 		$http.get(url)
 		.then(function(response) {
-			response["headers"] = response["config"] = response["statusText"] =  null;
-			delete response["headers"];
-			delete response["config"];
-			delete response["statusText"];
-			response.data.data.movies.forEach(function(element) {
+			newResponse = angular.copy($scope.deleteResponseHeaders(response))
+			newResponse.data.data.movies.forEach(function(element) {
 				if(type === 'Popular') {
 					$scope.popularPage = response.data.data.page_number;
 					$scope.popularMovies.push(element)
@@ -142,6 +134,15 @@ angular.module('app')
 		}, function() {
 			$scope.addMore = false;
 		});
+	}
+
+	$scope.deleteResponseHeaders = function(response) {
+		newObj = angular.copy(response);
+		newObj["headers"] = newObj["config"] = newObj["statusText"] =  null;
+		delete newObj["headers"];
+		delete newObj["config"];
+		delete newObj["statusText"];
+		return newObj;
 	}
 
 	$scope.downloadFile = function(url, quality) {
