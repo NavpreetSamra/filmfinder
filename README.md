@@ -19,4 +19,4 @@ This application makes use of api's powered by [YTS.AG](https://www.yts.ag/api)
 # Bugs and Features
 
 If you found a bug or have a feature request, please create an issue here on GitHub.
-https://github.com/gowthamcodingmart/FilmFinder/issues
+https://github.com/gowthamcodingmart/filmfinder/issues
