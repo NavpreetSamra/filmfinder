@@ -422,7 +422,40 @@ p {
  	align-items: center;
 }
 
+.scrolling-wrapper-flexbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.scrolling-wrapper-flexbox .card {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  margin-right: 3px;
+}
+
+.chip-mr-5 {
+	margin-right: 5px;
+}
+
+.scrolling-wrapper, .scrolling-wrapper-flexbox {
+  height: 50px;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+.scrolling-wrapper::-webkit-scrollbar, .scrolling-wrapper-flexbox::-webkit-scrollbar {
+  display: none;
+}
+
+.pull-right {
+	cursor: pointer;
+	float: right;
+}
+
 /* Animation key frames*/
-@keyframes beat{
+@keyframes beat {
 	to { transform: scale(1.3); }
 }

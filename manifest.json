@@ -3,7 +3,7 @@
   "name"            : "FilmFinder",
   "description"     : "Browse and download YIFY movies in excellent 720p, 1080p and 3D quality from YTS.AG",
   "short_name"      : "FilmFinder",
-  "version"         : "0.9",
+  "version"         : "0.9.1",
   "browser_action": {
     "default_popup": "index.html",
     "default_icon" : "images/logo/icon.png"

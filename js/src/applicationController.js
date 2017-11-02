@@ -72,7 +72,7 @@ angular.module('app')
     $scope.startSearch = true;
 		$scope.contentExtra = 'Show more';
 		$scope.movie = [];
-		$http.get('https://yts.ag/api/v2/movie_details.json?movie_id='+id)
+		$http.get('https://yts.ag/api/v2/movie_details.json?with_cast=true&movie_id='+id)
 		.then(function(response) {
       $scope.startSearch = false;
 			$scope.movie = angular.copy(response.data.data.movie);
@@ -83,7 +83,8 @@ angular.module('app')
         $scope.movie = $scope.popularMovies.find(function(movie) { return movie.id == id})
       else
         $scope.movie = $scope.latestMovies.find(function(movie) { return movie.id == id})
-      $scope.videoID = $sce.trustAsResourceUrl('https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code);
+      if($scope.movie.yt_trailer_code)
+      	$scope.videoID = $sce.trustAsResourceUrl('https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code);
 		});
 		$location.hash(id);
   }
@@ -172,6 +173,11 @@ angular.module('app')
     chrome.tabs.create({
 			url: url
 		});
+  }
+
+  $scope.scrollHorizontal = function(e, scrollTo) {
+  	var scrollval = scrollTo === 'forward' ? 200 : -200;
+  	document.querySelector('div.scrolling-wrapper-flexbox').scrollLeft = scrollval;
   }
 
 }]);
