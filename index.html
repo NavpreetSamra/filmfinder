@@ -23,7 +23,7 @@
             <i class="material-icons">new_releases</i>
             <span class="tab">Latest</span>
           </a>
-          <a href="#search-panel" class="mdl-tabs__tab">
+          <a href="#search-panel" class="mdl-tabs__tab" ng-click="toTop()">
             <i class="material-icons">search</i>
             <span class="tab">Search</span>
           </a>
@@ -176,10 +176,28 @@
             <p class="summary-content" ng-class="contentExtra == 'Show more' ? 'show-less' : 'show-more'">{{movie.description_full | cleanDom}}</p>
             <h6 class="summary-content-more" ng-click="showContent()">{{contentExtra}}</h6>
           </div>
-          <div class="movie-trailer" ng-show="!startSearch">
-              <h4>Trailer</h4>
-              <iframe width="460" height="220" frameBorder="0" ng-src="{{videoID}}"></iframe>
+          <div class="movie-summary" ng-show="!startSearch && movie.cast">
+            <h4>
+              Movie cast
+              <span class="pull-right" ng-click="scrollHorizontal($event, 'forward')">
+                <i class="material-icons">chevron_right</i>
+              </span>
+              <span class="pull-right" ng-click="scrollHorizontal($event, 'backward')">
+                <i class="material-icons">chevron_left</i>
+              </span>
+            </h4>
+            <div class="scrolling-wrapper-flexbox">
+              <span class="mdl-chip mdl-chip--contact chip-mr-5" ng-repeat="person in movie.cast">
+                <img class="mdl-chip__contact" ng-if="person.url_small_image" ng-src="{{person.url_small_image}}"></img>
+                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" ng-if="!person.url_small_image">{{person.name[0]}}</span>
+                <span class="mdl-chip__text">{{person.name}}</span>
+              </span>
             </div>
+          </div>
+          <div class="movie-trailer" ng-show="!startSearch">
+            <h4>Trailer</h4>
+            <iframe width="460" height="220" frameBorder="0" ng-src="{{videoID}}"></iframe>
+          </div>
         </div>
       </div>
 
@@ -204,8 +222,8 @@
       </ul>
       <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
           data-mdl-for="about">
-        <li class="mdl-menu__item">FilmFinder - 0.9</li>
-        <li class="mdl-menu__item" ng-click="openInNewTab('https://addons.opera.com/en/extensions/details/filmfinder/')">Rate & Review</li>
+        <li class="mdl-menu__item">Version - 0.9</li>
+        <!-- <li class="mdl-menu__item" ng-click="openInNewTab('https://addons.opera.com/en/extensions/details/filmfinder/')">Rate & Review</li> -->
         <li class="mdl-menu__item" ng-click="openInNewTab('https://github.com/gowthamcodingmart/FilmFinder')">View on Github</li>
       </ul>
     </div>
