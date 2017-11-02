@@ -83,7 +83,8 @@ angular.module('app')
         $scope.movie = $scope.popularMovies.find(function(movie) { return movie.id == id})
       else
         $scope.movie = $scope.latestMovies.find(function(movie) { return movie.id == id})
-      $scope.videoID = $sce.trustAsResourceUrl('https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code);
+      if($scope.movie.yt_trailer_code)
+      	$scope.videoID = $sce.trustAsResourceUrl('https://www.youtube.com/embed/'+$scope.movie.yt_trailer_code);
 		});
 		$location.hash(id);
   }
