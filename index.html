@@ -83,7 +83,7 @@
           <div class="search-container">
             <div class="searchBarMain">
               <i class="material-icons searchBarSearchIcon noUserSelect">search</i>
-              <input type="text" name="header-search" ng-model="searchInput" id="searchBarInput" placeholder="Search for a movie" ng-enter="searchMovie(searchInput)">
+              <input type="text" name="header-search" ng-model="searchInput" id="searchBarInput" placeholder="Search for a movie" ng-change="searchMovie(searchInput)" ng-model-options="{debounce: 300}">
               <md-button class="md-icon-button clearSearchBarField noUserSelect" aria-label="cancel" ng-click="searchInput = ''" ng-show="searchInput.length > 0">
                 <md-icon class="material-icons">clear</md-icon>
               </md-button>
@@ -138,39 +138,39 @@
         <div class="inner-container">
           <img class="cover" ng-src="{{movie.medium_cover_image}}" ng-show="!startSearch">
           <div class="right-content" ng-show="!startSearch">
-              <h4 class="movie-title">{{movie.title | cleanDom}}</h4>
-              <p class="movie-year">{{movie.year | cleanDom}}</p>
-              <div class="movie-rating">
-                <ul>
-                  <li class="imdb-icon">
-                    <i class="material-icons blue">access_time</i>
-                  </li>
-                  <li>
-                    <span class="imdb-rating">{{(movie.runtime | cleanDom) | runTime}}</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="movie-rating">
-                <ul>
-                  <li class="imdb-icon" ng-if="movie.like_count">
-                    <i class="material-icons red heart">favorite</i>
-                  </li>
-                  <li ng-if="movie.like_count">
-                    <span class="imdb-rating">{{movie.like_count | cleanDom}} Like(s)</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="movie-rating">
-                <ul>
-                  <li class="imdb-icon">
-                    <img src="images/imdb_icon.png">
-                  </li>
-                  <li>
-                    <span class="imdb-rating">{{movie.rating | cleanDom}}</span>
-                  </li>
-                </ul>
-              </div>
+            <h4 class="movie-title">{{movie.title | cleanDom}}</h4>
+            <p class="movie-year">{{movie.year | cleanDom}}</p>
+            <div class="movie-rating">
+              <ul>
+                <li class="imdb-icon">
+                  <i class="material-icons blue">access_time</i>
+                </li>
+                <li>
+                  <span class="imdb-rating">{{(movie.runtime | cleanDom) | runTime}}</span>
+                </li>
+              </ul>
             </div>
+            <div class="movie-rating">
+              <ul>
+                <li class="imdb-icon" ng-if="movie.like_count">
+                  <i class="material-icons red heart">favorite</i>
+                </li>
+                <li ng-if="movie.like_count">
+                  <span class="imdb-rating">{{movie.like_count | cleanDom}} Like(s)</span>
+                </li>
+              </ul>
+            </div>
+            <div class="movie-rating">
+              <ul>
+                <li class="imdb-icon">
+                  <img src="images/imdb_icon.png">
+                </li>
+                <li>
+                  <span class="imdb-rating">{{movie.rating | cleanDom}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div class="movie-summary" ng-show="!startSearch">
             <h4>Summary</h4>
             <p class="summary-content" ng-class="contentExtra == 'Show more' ? 'show-less' : 'show-more'">{{movie.description_full | cleanDom}}</p>
@@ -204,10 +204,24 @@
       <!-- Footer -->
       <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__right-section">
-          <button id="to_top" class="mdl-mini-footer__social-btn" ng-click="toTop()"><i class="material-icons">vertical_align_top</i></button>
+          <button id="to-top" class="mdl-mini-footer__social-btn" ng-click="toTop()"><i class="material-icons">arrow_upward</i></button>
           <button class="mdl-mini-footer__social-btn" id="about"><i class="material-icons">info</i></button>
         </div>
       </footer>
+
+      <!-- Tooltip contene -->
+      <div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" data-mdl-for="to-top">
+        Back to top
+      </div>
+      <div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" data-mdl-for="about">
+        Info
+      </div>
+      <div class="mdl-tooltip mdl-tooltip--left mdl-tooltip--large" data-mdl-for="download">
+        Download Torrents
+      </div>
+      <div class="mdl-tooltip mdl-tooltip--left mdl-tooltip--large" data-mdl-for="more">
+        More
+      </div>
 
       <!-- Dialog content -->
       <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
