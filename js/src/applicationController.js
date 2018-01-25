@@ -24,10 +24,10 @@ angular.module('app')
 		url='';
 		if(type === 'Popular') {
       $scope.selectedTab = 'Popular'
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count'
+			url='https://yts.am/api/v2/list_movies.json?limit=21&sort_by=download_count'
 		} else {
       $scope.selectedTab = 'Latest'
-			url='https://yts.ag/api/v2/list_movies.json?limit=21'
+			url='https://yts.am/api/v2/list_movies.json?limit=21'
 		}
 		if(navigator.onLine) {
 			if(($scope.popularMovies.length == 0 && type === 'Popular') || ($scope.latestMovies.length == 0 && type === 'Latest')) {
@@ -72,7 +72,7 @@ angular.module('app')
     $scope.startSearch = true;
 		$scope.contentExtra = 'Show more';
 		$scope.movie = [];
-		$http.get('https://yts.ag/api/v2/movie_details.json?with_cast=true&movie_id='+id)
+		$http.get('https://yts.am/api/v2/movie_details.json?with_cast=true&movie_id='+id)
 		.then(function(response) {
       $scope.startSearch = false;
 			$scope.movie = angular.copy(response.data.data.movie);
@@ -93,7 +93,7 @@ angular.module('app')
 		if(searchInput.length != 0 && navigator.onLine) {
       $scope.startSearch = true;
 			$scope.searchMovies = [];
-			$http.get('https://yts.ag/api/v2/list_movies.json?limit=21&query_term='+searchInput, $scope.config)
+			$http.get('https://yts.am/api/v2/list_movies.json?limit=21&query_term='+searchInput, $scope.config)
 			.then(function(response) {
         newResponse = angular.copy($scope.deleteResponseHeaders(response))
         $scope.startSearch = false;
@@ -114,10 +114,10 @@ angular.module('app')
 		url='';
 		if(type === 'Popular') {
       $scope.selectedTab = 'Popular'
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&sort_by=download_count&page='+($scope.popularPage+1)
+			url='https://yts.am/api/v2/list_movies.json?limit=21&sort_by=download_count&page='+($scope.popularPage+1)
 		} else {
       $scope.selectedTab = 'Latest'
-			url='https://yts.ag/api/v2/list_movies.json?limit=21&page='+($scope.latestPage+1)
+			url='https://yts.am/api/v2/list_movies.json?limit=21&page='+($scope.latestPage+1)
 		}
 		$http.get(url)
 		.then(function(response) {

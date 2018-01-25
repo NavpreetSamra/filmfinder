@@ -4,11 +4,11 @@ A Web extension powered by [Angular.js](https://angularjs.org)
 
 # Description
 
-Browse and Download latest movie torrents from [YTS.AG](https://www.yts.ag)
+Browse and Download latest movie torrents from [YTS.AM](https://www.yts.am)
 
 # Api
 
-This application makes use of api's powered by [YTS.AG](https://www.yts.ag/api)
+This application makes use of api's powered by [YTS.AM](https://www.yts.am/api)
 
 # Installation
 
